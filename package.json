@@ -1,0 +1,20 @@
+{
+  "name": "api-4.2",
+  "version": "1.0.0",
+  "description": "Entrega 4.2: Node REST + DB + JWT- API que dona suport a un joc de daus",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/patricia79/nodeInitialDemo.git"
+  },
+  "author": "Patricia Gonzalez",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/patricia79/nodeInitialDemo/issues"
+  },
+  "homepage": "https://github.com/patricia79/nodeInitialDemo#readme"
+}
