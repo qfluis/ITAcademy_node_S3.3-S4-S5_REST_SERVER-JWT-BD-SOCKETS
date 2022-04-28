@@ -36,6 +36,6 @@ router.get('/ranking', getRanking);
 router.get('/ranking/loser', getRankingLoser);
 
 //GET /players/ranking/winner: retorna el jugador amb millor percentatge d’èxit
-router.get('ranking/winner', getRankingWinner);
+router.get('/ranking/winner', getRankingWinner);
 
 module.exports = router;

@@ -23,6 +23,7 @@ El software ha de permetre llistar tots els jugadors que hi ha al sistema, el pe
 jugador i el percentatge d’èxit mig de tots els jugadors en el sistema.
 El software ha de respectar els principals patrons de disseny.
 Has de tenir en compte els següents detalls de construcció:
+
 POST /players: crea un jugador
 PUT /players: modifica el nom del jugador
 POST /players/{id}/games: un jugador específic realitza una tirada
