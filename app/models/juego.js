@@ -46,6 +46,14 @@ class Juego {
         return jugador;
     }
 
+    eliminarTiradasJugador(id) {
+        const jugador = this.getJugador(id);
+        jugador.tiradas = [];
+        jugador.juegos = 0;
+        jugador.juegosGanados = 0;
+        return jugador;
+    }
+
     listaJugadores(){
         return this.jugadores;
     }

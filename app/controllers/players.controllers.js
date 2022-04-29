@@ -80,10 +80,24 @@ const postPlayersGames = (req = request, res) => {
     });
 }
 
-// TODO: DELETE /players/{id}/games: elimina les tirades del jugador
+// DELETE /players/{id}/games: elimina les tirades del jugador
 const deletePlayersGames = (req, res) => {
+
+    let { id } = req.params;
+    id = parseInt(id);
+   
+    if(!juego.existeIdJugador(id)){
+        res.status(400).json({
+            msg:"id de jugador no válido"
+        });
+        return;
+    }
+
+    const jugador = juego.eliminarTiradasJugador(id);
+
     res.json({
-        msg:"DELETE /players/{id}/games: elimina les tirades del jugador"
+        msg:"Eliminadas las tiradas del jugador",
+        jugador
     });
 }
 
