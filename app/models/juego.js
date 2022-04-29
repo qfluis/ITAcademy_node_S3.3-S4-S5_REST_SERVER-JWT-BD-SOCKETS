@@ -24,10 +24,28 @@ class Juego {
         const resultado = this.jugadores.map((j) => j.nombre).indexOf(nombre);
         return (resultado !== -1);
     }
+
+    existeIdJugador(id){
+        const resultado = this.jugadores.map((j) => j.id).indexOf(id);
+        return (resultado !== -1);
+    }
+
     getJugador(id) {
         const index = this.jugadores.map((j) => j.id).indexOf(id);
         return this.jugadores[index];
     }
+
+    getJugadorPorNombre(nombre) {
+        const index = this.jugadores.map((j) => j.nombre).indexOf(nombre);
+        return this.jugadores[index];
+    }
+
+    modificarNombreJugador(nombre, nuevoNombre) {
+        const jugador = this.getJugadorPorNombre(nombre);
+        jugador.nombre = nuevoNombre;
+        return jugador;
+    }
+
     listaJugadores(){
         return this.jugadores;
     }
