@@ -60,6 +60,7 @@ class Juego {
     rankingJugadores(){
         return this.jugadores.map((j) => {
             return {
+                id: j.id,
                 nombre: j.nombre,
                 ratioVictorias: (j.juegosGanados / j.juegos)  *100
             }
