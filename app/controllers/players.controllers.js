@@ -1,9 +1,32 @@
 const { response, request } = require('express');
+const juego = require('../models/juego');
 
 // POST /players: crea un jugador
-const postPlayers = (req, res = response) => {
+const postPlayers = (req = request, res = response) => {
+    const { nombre } = req.body;
+
+    if(!nombre) {
+        res.status(400).json({
+            msg:"Nombre de usuario no especificado"
+        });
+        return;
+    }
+
+    // TODO: ¿controlar length de usuario?
+
+    if (juego.existeJugador(nombre)) {
+        res.status(400).json({
+            msg:"usuario ya existente"
+        });
+        return
+    }
+    
+    const jugador = juego.anadirJugador(nombre);
+
+    // Todo ok 🙂
     res.json({
-        msg:"POST /players: crea un jugador"
+        msg:"Usuario creado creado con éxito",
+        jugador
     });
 }
 

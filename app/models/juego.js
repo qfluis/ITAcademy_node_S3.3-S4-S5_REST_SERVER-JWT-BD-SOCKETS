@@ -19,6 +19,11 @@ class Juego {
         this.jugadores.push(jugador);
         return jugador;
     }
+
+    existeJugador(nombre){
+        const resultado = this.jugadores.map((j) => j.nombre).indexOf(nombre);
+        return (resultado !== -1);
+    }
     getJugador(id) {
         const index = this.jugadores.map((j) => j.id).indexOf(id);
         return this.jugadores[index];
