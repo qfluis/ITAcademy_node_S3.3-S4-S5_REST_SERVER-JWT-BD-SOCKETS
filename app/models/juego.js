@@ -14,7 +14,7 @@ class Juego {
             juegos: 0,
             juegosGanados: 0,
             tiradas: []
-            
+            // TODO: ¿añadir ratio? para facilitar rankings...
         }
         this.jugadores.push(jugador);
         return jugador;
@@ -64,6 +64,18 @@ class Juego {
                 ratioVictorias: (j.juegosGanados / j.juegos)  *100
             }
         }).sort((a,b) => b.ratioVictorias-a.ratioVictorias);
+    }
+
+    obtenerRatioTotal(){
+        // TODO: probar con reduce...
+        let totalJuegos = 0;
+        let juegosGanados = 0;
+        for (let jugador of this.jugadores) {
+            totalJuegos += jugador.juegos;
+            juegosGanados += jugador.juegosGanados;
+        }
+        const ratio = (juegosGanados / totalJuegos) * 100;
+        return ratio;        
     }
 
     jugar(id) {

@@ -140,10 +140,14 @@ const getPlayersGames = (req = request, res) => {
         });
     }
 
-// TODO: GET /players/ranking: retorna el percentatge mig d’èxits del conjunt de tots els jugadors
+// GET /players/ranking: retorna el percentatge mig d’èxits del conjunt de tots els jugadors
 const getRanking = (req, res) => {
+    
+    const ratioAciertos = juego.obtenerRatioTotal();
+    
     res.json({
-            msg:"GET /players/ranking: retorna el percentatge mig d’èxits del conjunt de tots els jugadors"
+            msg:"Promedio aciertos jugadores obtenido correctamente",
+            ratioAciertos
         });
     }
 
