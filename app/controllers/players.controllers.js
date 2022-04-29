@@ -112,10 +112,31 @@ const jugadores = juego.rankingJugadores();
         });
     }
 
-// TODO: GET /players/{id}/games: retorna el llistat de jugades per un jugador.
-const getPlayersGames = (req, res) => {
+// GET /players/{id}/games: retorna el llistat de jugades per un jugador.
+const getPlayersGames = (req = request, res) => {
+
+    let { id } = req.params;
+    if(!id) {
+        res.status(400).json({
+            msg: "Id de usuario no indicado"
+        });
+        return;
+    }
+    
+    id = parseInt(id)
+
+    if(!juego.existeIdJugador(id)) {
+        res.status(400).json({
+            msg: "Id de usuario no válido"
+        });
+        return;
+    }
+
+    jugador = juego.getJugador(id);
+
     res.json({
-            msg:"GET /players/{id}/games: retorna el llistat de jugades per un jugador."
+            msg:"Listado obtenido correctamente",
+            jugadas: jugador.tiradas
         });
     }
 
