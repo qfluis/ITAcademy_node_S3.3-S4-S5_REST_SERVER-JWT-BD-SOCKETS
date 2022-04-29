@@ -12,7 +12,7 @@ body {
 }
 
 .header {
-    background-color: orangered;
+    background-color: orange;
     color: white;
     display:flex;
     justify-content: center;
@@ -20,16 +20,32 @@ body {
     padding: 5px 10px 5px 10px;
 }
 .header-title h1 {
+    font-size: 3rem;
     margin:0px;
+    color:white;
+    -webkit-text-stroke: 1px orangered;
 }
 .header-login {
     margin-left:auto;
 }
+.header-login a {
+    background-color: orangered;
+    color:white;
+    padding: 10px;
+    text-decoration: none;
+
+
+    border-radius: 10px;
+}
+
 .game {
     background-color: white;
 }
 .game-images{
     background-color: blueviolet;
+    border: 0px solid violet;
+    border-width: 5px 0px 5px 0px;
+
     display: flex;
     justify-content:space-around;
     padding: 15px;
@@ -37,6 +53,7 @@ body {
 .game-images img {
     width: 18%;
     border-radius: 100%;
+    box-shadow: 5px 5px 25px black;
 }
 .game-options {
     padding: 20px;
