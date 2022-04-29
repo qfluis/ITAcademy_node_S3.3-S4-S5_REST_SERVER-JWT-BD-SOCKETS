@@ -1,11 +1,13 @@
 const express = require('express');
 const cors = require('cors');
+const path = require('path');
 
 class Server {
     constructor() {
         this.app = express();
         this.port = process.env.PORT;
         this.playersPath = '/api/players';
+        this.webPath = '/';
 
         // Middlewares
         this.middlewares();
@@ -22,11 +24,14 @@ class Server {
         this.app.use( express.json() );
 
         // Directorio público (no necesario para los puntos obligatorios de la práctica)
-        this.app.use( express.static('public'));
+        
+        const url = path.resolve(__dirname,'../','public');
+        this.app.use(express.static(url));
     }
 
     routes() {
         this.app.use( this.playersPath, require('../routes/players.routes'));
+        this.app.use( this.webPath, require('../routes/web.routes'))
     }
 
     listen() {
