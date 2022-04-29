@@ -3,19 +3,20 @@ const path = require('path');
 const juego = require('../models/juego');
 
 // TODO: revisar codigos respuesta 🙂
+// TODO: ¿controlar length de campos...?
+
 
 // POST /players: crea un jugador
 const postPlayers = (req = request, res = response) => {
     const { nombre } = req.body;
+    // TODO: Si nombre no incluido, se puede dar de alta igual...
 
     if(!nombre) {
         res.status(400).json({
             msg:"Nombre de usuario no especificado"
         });
         return;
-    }
-
-    // TODO: ¿controlar length de usuario?
+    } 
 
     if (juego.existeJugador(nombre)) {
         res.status(400).json({
@@ -35,6 +36,7 @@ const postPlayers = (req = request, res = response) => {
 
 // PUT /players: modifica el nom del jugador
 const putPlayers = (req =request, res) => {
+    // TODO: Se podría quitar el nombre, para ser anónimo... ¿id?
     const { nombre, nuevoNombre } = req.body
 
     if (!nombre || !nuevoNombre || nombre === "" || nuevoNombre === "") {
@@ -151,19 +153,30 @@ const getRanking = (req, res) => {
         });
     }
 
-// TODO: GET /players/ranking/loser: retorna el jugador amb pitjor percentatge d’èxit
+// GET /players/ranking/loser: retorna el jugador amb pitjor percentatge d’èxit
 const getRankingLoser = (req, res) => {
+
+    const jugadores = juego.rankingJugadores();
+    const loser = jugadores[jugadores.length-1];
+
     res.json({
-            msg:"GET /players/ranking/loser: retorna el jugador amb pitjor percentatge d’èxit"
-        });
-    }
+        msg:"Loser obtenido correctamente",
+        loser
+    });
+}
 
 // TODO: GET /players/ranking/winner: retorna el jugador amb millor percentatge d’èxit
 const getRankingWinner = (req, res) => {
+
+    const jugadores = juego.rankingJugadores();
+    const winner = jugadores[0];
+
     res.json({
-            msg:"GET /players/ranking/winner: retorna el jugador amb millor percentatge d’èxit"
-        });
-    }
+        msg:"Winner obtenido correctamente",
+        winner
+    });
+}
+
 
 
 
