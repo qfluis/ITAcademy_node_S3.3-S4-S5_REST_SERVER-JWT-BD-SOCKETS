@@ -1,9 +1,22 @@
 const Server = require('./models/server');
+const juego = require('./models/juego');
 require('dotenv').config();
 
 const server = new Server();
 
 server.listen();
+const idLuis = juego.anadirJugador("Luis").id;
+const idCris = juego.anadirJugador("Cris").id;
+
+for (let i=0; i< 200; i++){
+    juego.jugar(idLuis);
+}
+
+for (let i=0; i< 200; i++){
+    juego.jugar(idCris);
+}
+console.log(juego.rankingJugadores());
+
 
 
 /*
