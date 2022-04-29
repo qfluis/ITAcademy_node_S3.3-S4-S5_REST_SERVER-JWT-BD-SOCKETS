@@ -7,7 +7,8 @@ const { postPlayers,
         getPlayersGames, 
         getRanking, 
         getRankingLoser, 
-        getRankingWinner } = require ('../controllers/players.controllers');
+        getRankingWinner,
+        playersNotFound } = require ('../controllers/players.controllers');
 
 const router = Router();
 
@@ -37,5 +38,8 @@ router.get('/ranking/loser', getRankingLoser);
 
 //GET /players/ranking/winner: retorna el jugador amb millor percentatge d’èxit
 router.get('/ranking/winner', getRankingWinner);
+
+// Not found
+router.get('*', playersNotFound)
 
 module.exports = router;

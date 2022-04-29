@@ -1,4 +1,5 @@
 const { response, request } = require('express');
+const path = require('path');
 const juego = require('../models/juego');
 
 // TODO: revisar codigos respuesta 🙂
@@ -125,6 +126,16 @@ const getRankingWinner = (req, res) => {
         });
     }
 
+
+
+
+// Endpoint no válido
+const playersNotFound = (req = request, res = response) => {
+    res.status(400).json({
+        msg: req.path + " - Endpoint no válido"
+    });
+}    
+
 module.exports = {
     postPlayers, 
     putPlayers, 
@@ -134,5 +145,6 @@ module.exports = {
     getPlayersGames, 
     getRanking, 
     getRankingLoser, 
-    getRankingWinner 
+    getRankingWinner,
+    playersNotFound 
 }
