@@ -1,29 +1,14 @@
 const express = require("express");
-const app = require(express)
+const app = express()
 const config = require('./config')
-require ( 'dotenv' ).config()
-const mongoose = require('mongoose')
+const bodyParser = require('body-parser');
+//require ( 'dotenv' ).config()
+const playersPost = require('./controllers/playerCtrl')
 
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}));
 
-/*
-Tenemos un array numbers, en el cuál insertaremos números. Insertaremos la cantidad de números que figura en
- iterations. En cada iteración se insertará un number, que habrá sido generado con una simulación del 
- lanzamiento de un dado (un número aleatorio del 1 al 6). En el caso de obtener un 6, paramos y rompemos 
- el bucle */
-
- const iterations = 10;
- let numbers = [];
- 
- for (let i = 0; i < iterations; i++) {
-   const number = 1 + Math.floor(Math.random() * 6);
-   numbers.push(number);
-   if (number === 6) {
-     console.log("ERROR");
-     break;
-   }
- }
- 
- console.log(numbers);
+app.post('/players', playersPost);
 
 
 app.listen(config.port, () => {
