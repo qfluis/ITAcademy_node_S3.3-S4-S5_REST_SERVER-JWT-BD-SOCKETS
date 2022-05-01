@@ -2,15 +2,13 @@
 
 class Player {
 
-    constructor(){
-        this.id = id
-        this.nom = nom
-        this.data_registre = data_registre
+    constructor(name){
+        this.id = null
+        this.name = name
+        this.register_date = new Date
 
     }
-
-
-
-}
+   
+    }
 
 module.exports = Player
