@@ -3,20 +3,21 @@ const path = require('path');
 const juego = require('../models/juego');
 
 // TODO: revisar codigos respuesta 🙂
-// TODO: ¿controlar length de campos...?
+// TODO: Hacer middlewares para validación de campos con express-validator...
 
 
 // POST /players: crea un jugador
 const postPlayers = (req = request, res = response) => {
-    const { nombre } = req.body;
-    // TODO: Si nombre no incluido, se puede dar de alta igual...
-
+    let { nombre } = req.body;
+    
     if(!nombre) {
-        res.status(400).json({
+        nombre = null;
+        /*res.status(400).json({
             msg:"Nombre de usuario no especificado"
         });
         return;
-    } 
+        */
+    }
 
     if (juego.existeJugador(nombre)) {
         res.status(400).json({
@@ -36,7 +37,6 @@ const postPlayers = (req = request, res = response) => {
 
 // PUT /players: modifica el nom del jugador
 const putPlayers = (req =request, res) => {
-    // TODO: Se podría quitar el nombre, para ser anónimo... ¿id?
     const { nombre, nuevoNombre } = req.body
 
     if (!nombre || !nuevoNombre || nombre === "" || nuevoNombre === "") {
@@ -165,7 +165,7 @@ const getRankingLoser = (req, res) => {
     });
 }
 
-// TODO: GET /players/ranking/winner: retorna el jugador amb millor percentatge d’èxit
+// GET /players/ranking/winner: retorna el jugador amb millor percentatge d’èxit
 const getRankingWinner = (req, res) => {
 
     const jugadores = juego.rankingJugadores();
