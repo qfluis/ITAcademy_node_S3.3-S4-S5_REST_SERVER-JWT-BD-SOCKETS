@@ -1,3 +1,5 @@
+const Jugador  = require('./jugador');
+
 class Juego {
     constructor(){
         this.jugadores = [];
@@ -5,7 +7,7 @@ class Juego {
         this.PUNTOS_VICTORIA = 7;        
     }
 
-    anadirJugador(jugadorNombre) {
+    async anadirJugador(jugadorNombre) {
         const fecha = new Date();
         const jugador = {
             nombre: jugadorNombre,
@@ -17,6 +19,22 @@ class Juego {
             // TODO: ¿añadir ratio? para facilitar rankings...
         }
         this.jugadores.push(jugador);
+        try {
+            const j = new Jugador({
+                nombre: 'Luisete'
+            });
+            await j.save();
+        } catch (error) {
+            console.log( error )
+            return null;
+        }
+        
+
+
+
+
+
+
         return jugador;
     }
 

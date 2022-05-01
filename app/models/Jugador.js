@@ -1,20 +1,31 @@
-/*
-import { Sequelize, Model, DataTypes } from 'sequelize';
+console.log("holis");
+const { DataTypes } = require('sequelize');
+const db = require('../db/connection');
 
-// MODELS
-const sequelize = new Sequelize('sqlite::memory:');
-const User = sequelize.define('User', {
-  username: DataTypes.STRING,
-  birthday: DataTypes.DATE,
+const Jugador = db.define('Jugador', {
+  id:{
+    type: DataTypes.INTEGER,
+    autoIncrement: true,
+    primaryKey: true
+  },
+  nombre: {
+    type: DataTypes.STRING,
+    unique: true,
+    //allowNull: true
+  },
+  fechaRegistro: {
+    type: DataTypes.DATE
+  },
+  juegos: {
+    type: DataTypes.INTEGER,
+    defaultValue: 0
+  },
+  juegosGanados: {
+    type: DataTypes.INTEGER,
+    defaultValue: 0
+  }
 });
 
+db.sync();
 
-
-// PERSIST and Query
-const jane = await User.create({
-    username: 'janedoe',
-    birthday: new Date(1980, 6, 20),
-  });
-  
-  const users = await User.findAll();
-  */
+module.exports = Jugador;
