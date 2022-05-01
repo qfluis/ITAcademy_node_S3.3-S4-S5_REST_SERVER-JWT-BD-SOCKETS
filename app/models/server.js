@@ -1,4 +1,5 @@
 const express = require('express');
+const db = require('../db/connection');
 const cors = require('cors');
 const path = require('path');
 
@@ -9,11 +10,24 @@ class Server {
         this.playersPath = '/api/players';
         this.webPath = '/';
 
+        // BD
+        this.dbConnection();
+
         // Middlewares
         this.middlewares();
 
         // rutas
         this.routes();
+    }
+
+    async dbConnection() {
+        try {            
+            await db.authenticate();
+            console.log("BD Inicializada");
+        } catch (error) {
+            console.log( error );
+            throw new Error( error );
+        }
     }
 
     middlewares() {
