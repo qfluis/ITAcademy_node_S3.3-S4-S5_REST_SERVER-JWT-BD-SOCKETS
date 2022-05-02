@@ -1,7 +1,8 @@
 "use strict";
 
-let Player = require("../models/player.js");
+//TODO POST /players: crea un jugador
 
+let Player = require("../models/player.js");
 
 let playersPost = (req, res) => {
   try {
