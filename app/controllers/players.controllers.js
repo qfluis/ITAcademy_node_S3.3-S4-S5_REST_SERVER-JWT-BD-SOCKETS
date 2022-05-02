@@ -82,35 +82,34 @@ const putPlayers = async (req = request, res) => {
     });
     
 }
-
 // POST /players/{id}/games: un jugador específic realitza una tirada
-const postPlayersGames = (req = request, res) => {
+const postPlayersGames = async (req = request, res) => {
     let { id } = req.params;
     id = parseInt(id);
    
-    if(!juego.existeIdJugador(id)){
+    if(! await juego.existeJugador({id})){
         res.status(400).json({
             msg:"id de jugador no válido"
         });
         return;
     }
 
-    const jugada = juego.jugar(id);
-
+    const jugada = await juego.jugar(id);
 
     res.json({
-        msg:"POST /players/{id}/games: un jugador específic realitza una tirada",
+        msg:"Tirada efectuada",
         jugada
     });
 }
 
+// TODO: Por aquí 🤣
 // DELETE /players/{id}/games: elimina les tirades del jugador
 const deletePlayersGames = (req, res) => {
 
     let { id } = req.params;
     id = parseInt(id);
    
-    if(!juego.existeIdJugador(id)){
+    if(!juego.existeJugador({id})){
         res.status(400).json({
             msg:"id de jugador no válido"
         });
@@ -149,7 +148,7 @@ const getPlayersGames = (req = request, res) => {
     
     id = parseInt(id)
 
-    if(!juego.existeIdJugador(id)) {
+    if(!juego.existeJugador({id})) {
         res.status(400).json({
             msg: "Id de usuario no válido"
         });

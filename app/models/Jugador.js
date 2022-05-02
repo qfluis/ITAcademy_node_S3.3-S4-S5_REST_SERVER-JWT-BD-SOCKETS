@@ -1,4 +1,3 @@
-console.log("holis");
 const { DataTypes } = require('sequelize');
 const db = require('../db/connection');
 
@@ -13,9 +12,9 @@ const Jugador = db.define('Jugador', {
     unique: true,
     //allowNull: true  // por defecto
   },
-  fechaRegistro: {
+  /*fechaRegistro: {     // Por defecto sequelize guarda createdAt
     type: DataTypes.DATE
-  },
+  },*/
   juegos: {
     type: DataTypes.INTEGER,
     defaultValue: 0
@@ -26,7 +25,7 @@ const Jugador = db.define('Jugador', {
   }
 }, 
 {
-  tableName: 'Jugadores'
+  tableName: 'jugadores'
 });
 
 db.sync();

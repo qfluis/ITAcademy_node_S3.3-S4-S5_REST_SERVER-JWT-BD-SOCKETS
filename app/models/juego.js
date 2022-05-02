@@ -1,9 +1,8 @@
 const Jugador  = require('./jugador');
+const Jugada = require('./Jugada');
 
 class Juego {
     constructor(){
-        this.jugadores = [];
-        this.proximoId = 1;
         this.PUNTOS_VICTORIA = 7;        
     }
 
@@ -31,7 +30,7 @@ class Juego {
         const jugador = (id)
                             ?await Jugador.findOne({ where: { id }})
                             :await Jugador.findOne({ where: { nombre } });
-        
+        console.log(jugador!==null);
         return (jugador !== null);
     }    
 
@@ -61,7 +60,7 @@ class Juego {
             return
         }
     }
-
+    // TODO: sequelize
     eliminarTiradasJugador(id) {
         const jugador = this.getJugador(id);
         jugador.tiradas = [];
@@ -69,10 +68,11 @@ class Juego {
         jugador.juegosGanados = 0;
         return jugador;
     }
-
+    // TODO: sequelize
     listaJugadores(){
         return this.jugadores;
     }
+    // TODO: sequelize
     rankingJugadores(){
         return this.jugadores.map((j) => {
             return {
@@ -82,7 +82,7 @@ class Juego {
             }
         }).sort((a,b) => b.ratioVictorias-a.ratioVictorias);
     }
-
+    // TODO: sequelize
     obtenerRatioTotal(){
         // TODO: probar con reduce...
         let totalJuegos = 0;
@@ -94,27 +94,29 @@ class Juego {
         const ratio = (juegosGanados / totalJuegos) * 100;
         return ratio;        
     }
+    // TODO: sequelize
+    async jugar(idJugador) {
 
-    jugar(id) {
         const dado1 = Math.round(Math.random()*5)+1;
         const dado2 = Math.round(Math.random()*5)+1;
         const resultado = dado1 + dado2;
         const exito = (resultado === this.PUNTOS_VICTORIA)?true:false;
 
-        const tirada = {
+ 
+        const jugador = await this.getJugador(idJugador);
+        const jugada = new Jugada({
+            idJugador,
             dado1,
             dado2,
             resultado,
             exito
-        }
-
-        const jugador = this.getJugador(id);
-        jugador.tiradas.push(tirada);
+        });
         jugador.juegos++;
         if (exito) jugador.juegosGanados++;
+        await jugador.save();
+        await jugada.save();
 
-
-        return tirada;
+        return jugada;
     }
 }
 
