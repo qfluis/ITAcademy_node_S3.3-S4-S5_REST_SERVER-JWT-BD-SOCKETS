@@ -29,27 +29,20 @@ class Juego {
 
         const jugador = await Jugador.findOne({ where: { nombre } });
         return (jugador !== null);
-
     }
 
     async existeIdJugador(id){
 
         const jugador = await Jugador.findOne({ where: { id }});
         return (jugador !== null);
-        /*
-        const resultado = this.jugadores.map((j) => j.id).indexOf(id);
-        return (resultado !== -1);
-        */
+    }
+    // TODO: revisar si es necesario el await o es redundante
+    async getJugador(id) {
+        return await Jugador.findOne({ where: { id }});
     }
 
-    getJugador(id) {
-        const index = this.jugadores.map((j) => j.id).indexOf(id);
-        return this.jugadores[index];
-    }
-
-    getJugadorPorNombre(nombre) {
-        const index = this.jugadores.map((j) => j.nombre).indexOf(nombre);
-        return this.jugadores[index];
+    async getJugadorPorNombre(nombre) {
+        return await Jugador.findOne({ where: { nombre }});
     }
 
     modificarNombreJugador(nombre, nuevoNombre) {

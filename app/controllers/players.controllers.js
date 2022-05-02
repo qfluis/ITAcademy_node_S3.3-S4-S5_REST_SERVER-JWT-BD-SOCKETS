@@ -38,15 +38,33 @@ const postPlayers = async (req = request, res = response) => {
 }
 
 // PUT /players: modifica el nom del jugador
-const putPlayers = (req =request, res) => {
-    const { nombre, nuevoNombre } = req.body
+// TODO; hacerlo con id y si no por nombre
+const putPlayers = async (req = request, res) => {
+    const { id, nombre, nuevoNombre } = req.body
 
-    if (!nombre || !nuevoNombre || nombre === "" || nuevoNombre === "") {
+    if (!(nombre || id)  || !nuevoNombre || nombre === "" || nuevoNombre === "") {
         res.status(400).json({
-            msg:"Faltan nombre y/o nuevoNombre"
+            msg:"Falta información. Es necesario facilitar id o nombre, además del nuevoNombre"
         })
         return;
     }
+
+    let jugador;
+    if(id) {
+        jugador = await juego.existeIdJugador(id);
+    } else {
+        jugador = await juego.existeJugador(nombre);               
+    }
+
+    //jugador = (id)?await juego.existeIdJugador(id): await juego.existeJugador(nombre);
+
+    if (!jugador) {
+        res.status(400).json({
+            msg:"usuario no existe"
+        });
+        return;
+    } 
+
 
     if (!juego.existeJugador(nombre)) {
         res.status(400).json({
