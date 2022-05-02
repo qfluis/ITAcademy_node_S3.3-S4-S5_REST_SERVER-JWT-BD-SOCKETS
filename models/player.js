@@ -6,9 +6,6 @@ class Player {
         this.id = null
         this.name = name
         this.register_date = new Date
-
     }
-   
-    }
-
+       }
 module.exports = Player
