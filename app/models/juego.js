@@ -8,44 +8,38 @@ class Juego {
     }
 
     async anadirJugador(jugadorNombre) {
-        const fecha = new Date();
-        const jugador = {
-            nombre: jugadorNombre,
-            id: this.proximoId++,
-            fechaRegistro: fecha,
-            juegos: 0,
-            juegosGanados: 0,
-            tiradas: []
-            // TODO: ¿añadir ratio? para facilitar rankings...
-        }
-        this.jugadores.push(jugador);
+
+        const jugador = {};
+
+        if(jugadorNombre != null) jugador.nombre = jugadorNombre;
+
+        let j;
         try {
-            const j = new Jugador({
-                nombre: 'Luisete'
-            });
+            j = new Jugador(jugador);
             await j.save();
         } catch (error) {
             console.log( error )
             return null;
         }
-        
 
-
-
-
-
-
-        return jugador;
+        return { id: j.id, nombre: j.nombre || "ANÓNIMO", fechaRegistro: j.createdAt };
     }
 
-    existeJugador(nombre){
-        const resultado = this.jugadores.map((j) => j.nombre).indexOf(nombre);
-        return (resultado !== -1);
+    async existeJugador(nombre){
+
+        const jugador = await Jugador.findOne({ where: { nombre } });
+        return (jugador !== null);
+
     }
 
-    existeIdJugador(id){
+    async existeIdJugador(id){
+
+        const jugador = await Jugador.findOne({ where: { id }});
+        return (jugador !== null);
+        /*
         const resultado = this.jugadores.map((j) => j.id).indexOf(id);
         return (resultado !== -1);
+        */
     }
 
     getJugador(id) {

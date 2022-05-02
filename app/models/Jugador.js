@@ -11,7 +11,7 @@ const Jugador = db.define('Jugador', {
   nombre: {
     type: DataTypes.STRING,
     unique: true,
-    //allowNull: true
+    //allowNull: true  // por defecto
   },
   fechaRegistro: {
     type: DataTypes.DATE
@@ -24,6 +24,9 @@ const Jugador = db.define('Jugador', {
     type: DataTypes.INTEGER,
     defaultValue: 0
   }
+}, 
+{
+  tableName: 'Jugadores'
 });
 
 db.sync();

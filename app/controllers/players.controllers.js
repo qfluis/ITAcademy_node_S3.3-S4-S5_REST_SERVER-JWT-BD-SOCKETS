@@ -7,32 +7,34 @@ const juego = require('../models/juego');
 
 
 // POST /players: crea un jugador
-const postPlayers = (req = request, res = response) => {
+const postPlayers = async (req = request, res = response) => {
     let { nombre } = req.body;
     
-    if(!nombre) {
+    if(!nombre || nombre === "" ) {
+        // usuario anónimo
         nombre = null;
-        /*res.status(400).json({
-            msg:"Nombre de usuario no especificado"
-        });
-        return;
-        */
-    }
-
-    if (juego.existeJugador(nombre)) {
-        res.status(400).json({
-            msg:"usuario ya existente"
-        });
-        return
-    }
+    } else {
+        if (await juego.existeJugador(nombre)) {
+            res.status(400).json({
+                msg:"usuario ya existente"
+            });
+            return;
+        }
+    }    
     
-    const jugador = juego.anadirJugador(nombre);
-
+    const jugador = await juego.anadirJugador(nombre);
+    if (jugador === null) {        
+        res.status(500).json({
+            msg:"Error en la BD, ponte en contacto con el admin"
+        })
+        return;
+    }
     // 🙂
-    res.json({
+    res.status(200).json({
         msg:"Usuario creado con éxito",
         jugador
     });
+    
 }
 
 // PUT /players: modifica el nom del jugador
