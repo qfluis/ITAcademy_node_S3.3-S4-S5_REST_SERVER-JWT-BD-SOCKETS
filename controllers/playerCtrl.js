@@ -1,8 +1,8 @@
 "use strict";
 
-//TODO POST /players: crea un jugador
-
 let Player = require("../models/player.js");
+
+//TODO POST /players: crea un jugador
 
 let playersPost = (req, res) => {
   try {
@@ -23,5 +23,25 @@ let playersPost = (req, res) => {
     res.status(500).json({ message: "Internal Server Error" });
   }
 };
-module.exports = playersPost;
 
+//TODO GET /players: mostra un jugador creat
+
+let playersGet = (req, res) => {
+  try {
+    if (!req.body.name) {
+      res.status(400).json({ message: "Bad request" });
+    } else {
+      let player0 = new Player();
+      player0.name = req.body.name;
+    res.status(200).json({message:`${player0.name}, register_date: new Date`});
+  }
+}
+catch (error) {
+  res.status(500).json({ message: "Internal Server Error" });
+}
+}
+
+//TODO PUT /players: modifica el nom del jugador
+
+module.exports = {
+  playersPost,playersGet }
