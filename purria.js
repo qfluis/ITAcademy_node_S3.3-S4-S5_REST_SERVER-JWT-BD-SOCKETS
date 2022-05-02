@@ -105,3 +105,12 @@ Tenemos un array numbers, en el cuál insertaremos números. Insertaremos la can
 
 
 */
+
+//TODO PUT /players: modifica el nom del jugador
+//TODO POST /players/{id}/games: un jugador específic realitza una tirada
+//TODO DELETE /players/{id}/games: elimina les tirades del jugador
+//TODO GET /players: retorna el llistat de tots els jugadors del sistema amb el seu percentatge mig d’èxits
+//TODO GET /players/{id}/games: retorna el llistat de jugades per un jugador.
+//TODO GET /players/ranking: retorna el percentatge mig d’èxits del conjunt de tots els jugadors
+//TODO GET /players/ranking/loser: retorna el jugador amb pitjor percentatge d’èxit
+//TODO GET /players/ranking/winner: retorna el jugador amb millor percentatge d’èxit
