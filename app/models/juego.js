@@ -25,17 +25,16 @@ class Juego {
         return { id: j.id, nombre: j.nombre || "ANÓNIMO", fechaRegistro: j.createdAt };
     }
 
-    async existeJugador(nombre){
-
-        const jugador = await Jugador.findOne({ where: { nombre } });
+    async existeJugador({id, nombre}){
+        
+        console.log({id, nombre});
+        const jugador = (id)
+                            ?await Jugador.findOne({ where: { id }})
+                            :await Jugador.findOne({ where: { nombre } });
+        
         return (jugador !== null);
-    }
+    }    
 
-    async existeIdJugador(id){
-
-        const jugador = await Jugador.findOne({ where: { id }});
-        return (jugador !== null);
-    }
     // TODO: revisar si es necesario el await o es redundante
     async getJugador(id) {
         return await Jugador.findOne({ where: { id }});
@@ -45,10 +44,22 @@ class Juego {
         return await Jugador.findOne({ where: { nombre }});
     }
 
-    modificarNombreJugador(nombre, nuevoNombre) {
-        const jugador = this.getJugadorPorNombre(nombre);
-        jugador.nombre = nuevoNombre;
-        return jugador;
+    async modificarNombreJugador({id = null, nombre = null, nuevoNombre}) {
+        let jugador;
+        if (id !== null) {
+            jugador = await this.getJugador(id);
+        } else {
+            jugador = await this.getJugadorPorNombre(nombre);
+        }
+        try {
+            jugador.nombre = nuevoNombre;
+            await jugador.save();  
+            return jugador;
+
+        } catch ( error ) {
+            console.log(error);
+            return
+        }
     }
 
     eliminarTiradasJugador(id) {

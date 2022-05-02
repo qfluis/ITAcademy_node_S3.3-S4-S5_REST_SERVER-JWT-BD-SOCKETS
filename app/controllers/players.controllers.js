@@ -14,7 +14,7 @@ const postPlayers = async (req = request, res = response) => {
         // usuario anónimo
         nombre = null;
     } else {
-        if (await juego.existeJugador(nombre)) {
+        if (await juego.existeJugador({nombre})) {
             res.status(400).json({
                 msg:"usuario ya existente"
             });
@@ -38,7 +38,6 @@ const postPlayers = async (req = request, res = response) => {
 }
 
 // PUT /players: modifica el nom del jugador
-// TODO; hacerlo con id y si no por nombre
 const putPlayers = async (req = request, res) => {
     const { id, nombre, nuevoNombre } = req.body
 
@@ -49,14 +48,7 @@ const putPlayers = async (req = request, res) => {
         return;
     }
 
-    let jugador;
-    if(id) {
-        jugador = await juego.existeIdJugador(id);
-    } else {
-        jugador = await juego.existeJugador(nombre);               
-    }
-
-    //jugador = (id)?await juego.existeIdJugador(id): await juego.existeJugador(nombre);
+    let jugador = await juego.existeJugador ({id, nombre});
 
     if (!jugador) {
         res.status(400).json({
@@ -65,20 +57,30 @@ const putPlayers = async (req = request, res) => {
         return;
     } 
 
-
-    if (!juego.existeJugador(nombre)) {
+    if(await juego.existeJugador({nombre: nuevoNombre})) {
         res.status(400).json({
-            msg:"usuario no existe"
+            msg:"nuevo nombre no disponible"
+        });
+        return;
+    };    
+
+    const jugadorModificado = (id)
+                                ?await juego.modificarNombreJugador({id,nuevoNombre})
+                                :await juego.modificarNombreJugador({nombre,nuevoNombre});
+    
+    if(jugadorModificado === null) {
+        res.status(500).json({
+            msg:"Error al modificar usuario. Ponte en contacto con el administrador"
         });
         return;
     }
 
-    const jugadorModificado = juego.modificarNombreJugador(nombre,nuevoNombre);
-
+    //🙂
     res.json({
         msg:"Nombre de jugador modificado",
         jugadorModificado
     });
+    
 }
 
 // POST /players/{id}/games: un jugador específic realitza una tirada
