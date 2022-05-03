@@ -134,9 +134,8 @@ const getPlayers = async (req, res) => {
         });
     }
 
-// TODO: Por aquí 🤣
 // GET /players/{id}/games: retorna el llistat de jugades per un jugador.
-const getPlayersGames = (req = request, res) => {
+const getPlayersGames = async (req = request, res) => {
 
     let { id } = req.params;
     if(!id) {
@@ -146,27 +145,29 @@ const getPlayersGames = (req = request, res) => {
         return;
     }
     
-    id = parseInt(id)
+    id = parseInt(id);
 
-    if(!juego.existeJugador({id})) {
+    if(! await juego.existeJugador({id})) {
         res.status(400).json({
             msg: "Id de usuario no válido"
         });
         return;
     }
 
-    jugador = juego.getJugador(id);
+
+    const jugadas = await juego.getJugadas(id);
 
     res.json({
             msg:"Listado obtenido correctamente",
-            jugadas: jugador.tiradas
+            jugadas: jugadas
         });
     }
 
+
 // GET /players/ranking: retorna el percentatge mig d’èxits del conjunt de tots els jugadors
-const getRanking = (req, res) => {
+const getRanking = async (req, res) => {
     
-    const ratioAciertos = juego.obtenerRatioTotal();
+    const ratioAciertos = await juego.obtenerRatioTotal();
     
     res.json({
             msg:"Promedio aciertos jugadores obtenido correctamente",
@@ -174,6 +175,7 @@ const getRanking = (req, res) => {
         });
     }
 
+// TODO: Por aquí 🤣
 // GET /players/ranking/loser: retorna el jugador amb pitjor percentatge d’èxit
 const getRankingLoser = (req, res) => {
 

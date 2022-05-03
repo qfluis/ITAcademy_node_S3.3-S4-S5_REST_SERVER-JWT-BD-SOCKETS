@@ -1,6 +1,8 @@
 const Jugador  = require('./jugador');
 const Jugada = require('./Jugada');
 
+// TODO: "TRYCATHEAR accesos a BD..."
+
 class Juego {
     constructor(){
         this.PUNTOS_VICTORIA = 7;        
@@ -26,7 +28,6 @@ class Juego {
 
     async existeJugador({id, nombre}){
         
-        console.log({id, nombre});
         const jugador = (id)
                             ?await Jugador.findOne({ where: { id }})
                             :await Jugador.findOne({ where: { nombre } });
@@ -34,7 +35,6 @@ class Juego {
         return (jugador !== null);
     }    
 
-    // TODO: revisar si es necesario el await o es redundante
     async getJugador(id) {
         return await Jugador.findOne({ where: { id }});
     }
@@ -44,7 +44,7 @@ class Juego {
     }
 
     async getJugadas(idJugador) {
-        return await jugada.findOne({ where: { idJugador }});
+        return await Jugada.findAll({ where: { idJugador }});
     }
     
     async modificarNombreJugador({id = null, nombre = null, nuevoNombre}) {
@@ -82,10 +82,6 @@ class Juego {
 
         return jugador;
     }
-    // TODO: sequelize
-    listaJugadores(){
-        return this.jugadores;
-    }
 
     async rankingJugadores(){
         return await Jugador.findAll({
@@ -94,18 +90,16 @@ class Juego {
         });
 
     }
-    // TODO: Por aquí 🤣
-    // TODO: sequelize
-    obtenerRatioTotal(){
-        // TODO: probar con reduce...
-        let totalJuegos = 0;
-        let juegosGanados = 0;
-        for (let jugador of this.jugadores) {
-            totalJuegos += jugador.juegos;
-            juegosGanados += jugador.juegosGanados;
-        }
-        const ratio = (juegosGanados / totalJuegos) * 100;
-        return ratio;        
+    
+    async obtenerRatioTotal(){
+        const jugadas = await Jugada.findAll({
+            attributes:['exito']
+        });
+        const totalJugadas = jugadas.length;
+        let totalAciertos = 0;
+        jugadas.map((valor) => (valor.exito)?totalAciertos+=1:totalAciertos+=0 );
+     
+        return totalAciertos / totalJugadas;
     }
 
     async jugar(idJugador) {
