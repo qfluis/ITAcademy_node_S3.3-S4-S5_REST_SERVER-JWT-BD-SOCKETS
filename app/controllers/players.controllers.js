@@ -104,19 +104,19 @@ const postPlayersGames = async (req = request, res) => {
 
 // TODO: Por aquí 🤣
 // DELETE /players/{id}/games: elimina les tirades del jugador
-const deletePlayersGames = (req, res) => {
+const deletePlayersGames = async (req, res) => {
 
     let { id } = req.params;
     id = parseInt(id);
    
-    if(!juego.existeJugador({id})){
+    if(! await juego.existeJugador({id})){
         res.status(400).json({
             msg:"id de jugador no válido"
         });
         return;
     }
 
-    const jugador = juego.eliminarTiradasJugador(id);
+    const jugador = await juego.eliminarTiradasJugador(id);
 
     res.json({
         msg:"Eliminadas las tiradas del jugador",

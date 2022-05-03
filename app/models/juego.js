@@ -38,11 +38,15 @@ class Juego {
     async getJugador(id) {
         return await Jugador.findOne({ where: { id }});
     }
-
+    
     async getJugadorPorNombre(nombre) {
         return await Jugador.findOne({ where: { nombre }});
     }
 
+    async getJugadas(id) {
+        return await jugada.findOne({ where: { idJugador }});
+    }
+    
     async modificarNombreJugador({id = null, nombre = null, nuevoNombre}) {
         let jugador;
         if (id !== null) {
@@ -61,11 +65,23 @@ class Juego {
         }
     }
     // TODO: sequelize
-    eliminarTiradasJugador(id) {
-        const jugador = this.getJugador(id);
-        jugador.tiradas = [];
+    // TODO: Por aquí 🤣
+    async eliminarTiradasJugador(idJugador) {
+        const jugador = await this.getJugador(idJugador);
+        const jugadas = await this.getJugadas(idJugador);
+
         jugador.juegos = 0;
         jugador.juegosGanados = 0;
+
+        await jugadas.destroy({
+            where: {
+                idJugador
+            }
+        });
+
+        jugador.save();
+        jugadas.save();
+
         return jugador;
     }
     // TODO: sequelize
