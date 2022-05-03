@@ -1,6 +1,7 @@
 const { Router } = require('express');
 const { check } = require('express-validator');
 const { validarCampos } = require('../middlewares/validar-campos');
+const { validarJWT } = require('../middlewares/validar-jwt');
 // TODO: implementar validación campos
 /*
 
@@ -26,7 +27,9 @@ const { postPlayers,
 const router = Router();
 
 // POST /players: crea un jugador
-router.post('/', postPlayers);
+router.post('/',[
+    validarJWT
+], postPlayers);
 
 // PUT /players: modifica el nom del jugador
 router.put('/', putPlayers);
