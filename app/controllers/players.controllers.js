@@ -177,10 +177,11 @@ const getRanking = async (req, res) => {
 
 // TODO: Por aquí 🤣
 // GET /players/ranking/loser: retorna el jugador amb pitjor percentatge d’èxit
-const getRankingLoser = (req, res) => {
+const getRankingLoser = async (req, res) => {
 
-    const jugadores = juego.rankingJugadores();
+    const jugadores = await juego.rankingJugadores();
     const loser = jugadores[jugadores.length-1];
+    console.log(loser);
 
     res.json({
         msg:"Loser obtenido correctamente",
@@ -189,9 +190,9 @@ const getRankingLoser = (req, res) => {
 }
 
 // GET /players/ranking/winner: retorna el jugador amb millor percentatge d’èxit
-const getRankingWinner = (req, res) => {
+const getRankingWinner = async (req, res) => {
 
-    const jugadores = juego.rankingJugadores();
+    const jugadores = await juego.rankingJugadores();
     const winner = jugadores[0];
 
     res.json({
@@ -199,9 +200,6 @@ const getRankingWinner = (req, res) => {
         winner
     });
 }
-
-
-
 
 
 // Endpoint no válido
