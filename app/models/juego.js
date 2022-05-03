@@ -43,7 +43,7 @@ class Juego {
         return await Jugador.findOne({ where: { nombre }});
     }
 
-    async getJugadas(id) {
+    async getJugadas(idJugador) {
         return await jugada.findOne({ where: { idJugador }});
     }
     
@@ -64,23 +64,21 @@ class Juego {
             return
         }
     }
-    // TODO: sequelize
-    // TODO: Por aquí 🤣
     async eliminarTiradasJugador(idJugador) {
         const jugador = await this.getJugador(idJugador);
-        const jugadas = await this.getJugadas(idJugador);
+        //const jugadas = await this.getJugadas(idJugador);
 
         jugador.juegos = 0;
         jugador.juegosGanados = 0;
 
-        await jugadas.destroy({
+        await Jugada.destroy({
             where: {
                 idJugador
             }
         });
 
         jugador.save();
-        jugadas.save();
+        //Jugada.save();
 
         return jugador;
     }
@@ -88,16 +86,15 @@ class Juego {
     listaJugadores(){
         return this.jugadores;
     }
-    // TODO: sequelize
-    rankingJugadores(){
-        return this.jugadores.map((j) => {
-            return {
-                id: j.id,
-                nombre: j.nombre,
-                ratioVictorias: (j.juegosGanados / j.juegos)  *100
-            }
-        }).sort((a,b) => b.ratioVictorias-a.ratioVictorias);
+
+    async rankingJugadores(){
+        return await Jugador.findAll({
+            attributes: ['id', 'nombre', 'juegos', 'juegosGanados', 'ratio'],
+            order: [['ratio', 'DESC'], ['juegos', 'DESC']]
+        });
+
     }
+    // TODO: Por aquí 🤣
     // TODO: sequelize
     obtenerRatioTotal(){
         // TODO: probar con reduce...
@@ -110,7 +107,7 @@ class Juego {
         const ratio = (juegosGanados / totalJuegos) * 100;
         return ratio;        
     }
-    // TODO: sequelize
+
     async jugar(idJugador) {
 
         const dado1 = Math.round(Math.random()*5)+1;
@@ -129,6 +126,7 @@ class Juego {
         });
         jugador.juegos++;
         if (exito) jugador.juegosGanados++;
+        jugador.ratio = jugador.juegosGanados / jugador.juegos;
         await jugador.save();
         await jugada.save();
 

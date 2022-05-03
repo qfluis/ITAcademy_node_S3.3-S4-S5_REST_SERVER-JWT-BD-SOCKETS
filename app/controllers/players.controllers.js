@@ -102,7 +102,6 @@ const postPlayersGames = async (req = request, res) => {
     });
 }
 
-// TODO: Por aquí 🤣
 // DELETE /players/{id}/games: elimina les tirades del jugador
 const deletePlayersGames = async (req, res) => {
 
@@ -125,16 +124,17 @@ const deletePlayersGames = async (req, res) => {
 }
 
 // GET /players: retorna el llistat de tots els jugadors del sistema amb el seu percentatge mig d’èxits
-const getPlayers = (req, res) => {
+const getPlayers = async (req, res) => {
     
-const jugadores = juego.rankingJugadores();
+    const jugadores = await juego.rankingJugadores();
 
     res.json({
-            msg:"Listado obtenido Holiwi",
+            msg:"Listado obtenido",
             jugadores
         });
     }
 
+// TODO: Por aquí 🤣
 // GET /players/{id}/games: retorna el llistat de jugades per un jugador.
 const getPlayersGames = (req = request, res) => {
 

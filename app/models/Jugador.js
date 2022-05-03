@@ -22,6 +22,10 @@ const Jugador = db.define('Jugador', {
   juegosGanados: {
     type: DataTypes.INTEGER,
     defaultValue: 0
+  },
+  ratio: {
+    type: DataTypes.DECIMAL(10,2),
+    defaultValue: 0
   }
 }, 
 {
