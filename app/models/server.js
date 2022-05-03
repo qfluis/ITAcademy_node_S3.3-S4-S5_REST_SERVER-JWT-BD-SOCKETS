@@ -9,6 +9,7 @@ class Server {
         this.port = process.env.PORT;
         this.playersPath = '/api/players';
         this.webPath = '/';
+        this.authPath ='/api/auth';
 
         // BD
         this.dbConnection();
@@ -45,7 +46,9 @@ class Server {
 
     routes() {
         this.app.use( this.playersPath, require('../routes/players.routes'));
-        this.app.use( this.webPath, require('../routes/web.routes'))
+        this.app.use( this.authPath, require('../routes/auth.routes'));
+        this.app.use( this.webPath, require('../routes/web.routes'));
+        
     }
 
     listen() {
