@@ -178,10 +178,11 @@ const getRanking = async (req, res) => {
 // TODO: Por aquí 🤣
 // GET /players/ranking/loser: retorna el jugador amb pitjor percentatge d’èxit
 const getRankingLoser = async (req, res) => {
-
+    /*
     const jugadores = await juego.rankingJugadores();
     const loser = jugadores[jugadores.length-1];
-    console.log(loser);
+    */
+    const loser = await juego.rankingLoser();
 
     res.json({
         msg:"Loser obtenido correctamente",

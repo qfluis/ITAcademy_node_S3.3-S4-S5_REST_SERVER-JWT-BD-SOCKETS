@@ -88,7 +88,20 @@ class Juego {
             attributes: ['id', 'nombre', 'juegos', 'juegosGanados', 'ratio'],
             order: [['ratio', 'DESC'], ['juegos', 'DESC']]
         });
+    }
 
+    async rankingLoser(){
+        return await Jugador.findOne({
+            attributes: ['id', 'nombre', 'juegos', 'juegosGanados', 'ratio'],
+            order: [['ratio', 'ASC'], ['juegos', 'ASC']]
+        });
+    }
+
+    async rankingWinner(){
+        return await Jugador.findOne({
+            attributes: ['id', 'nombre', 'juegos', 'juegosGanados', 'ratio'],
+            order: [['ratio', 'DESC'], ['juegos', 'DESC']]
+        });
     }
     
     async obtenerRatioTotal(){
