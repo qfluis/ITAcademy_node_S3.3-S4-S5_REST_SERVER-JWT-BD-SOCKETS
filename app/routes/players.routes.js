@@ -1,4 +1,17 @@
 const { Router } = require('express');
+const { check } = require('express-validator');
+const { validarCampos } = require('../middlewares/validar-campos');
+// TODO: implementar validación campos
+/*
+
+router.post('/login',[
+    check('email', 'Debes especificar un email válido').isEmail(),
+    check('pass', 'Debes introducir un password de al menos 6 caracteres').isLength({min:6}),
+    validarCampos
+], login);
+
+*/
+
 const { postPlayers, 
         putPlayers, 
         postPlayersGames, 
