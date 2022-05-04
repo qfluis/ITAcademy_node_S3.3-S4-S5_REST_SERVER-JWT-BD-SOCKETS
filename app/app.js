@@ -1,3 +1,20 @@
+/*
+Buen trabajo, Luis! Algunas cosas a mejorar:
+
+La URL que devuelves en el /user deberia tener también el http:// y eso, así se puede usar directamente
+El /upload falla porque tienes un error tonta en la gestión de las fechas. Tambien estás eliminando el nombre original de la imagen, ojo con eso. Además, tal como lo tienes solo se puede subir una imagen por minuto o se sobreescriben (lo habitual es poner la fecha en milisegundos antes del nombre de la imagen y ya) ⚠
+Al fallar el /upload el server devuelve un HTML de error. Hay que contemplar ese error ❗
+La autorización está rara. No compruebas el usuario y contraseña, solo que no esten en blanco. También falla si no hay body (HTML de error again). ¿Cuál de las dos cosas es la autorización? Habría que dejar solo una de las dos y hacer que compruebe algo
+Bien hecho controlando las rutas extras ✔
+Habría que separar rutas, middlewares, controllers y demás, tener todo eso en el app.js es una mala práctica de las gordas! ❌
+Dale un repaso a esas cosas para la máxima nota 😉
+
+
+*/
+
+
+
+
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');  // para leer body petición POST
@@ -26,7 +43,7 @@ app.get('/user', (req, res) => {
     res.status(200).json({
         name: 'Luis',
         edad: 41,
-        url: req.hostname + req.originalUrl
+        url: req.protocol + "://" + req.get('Host') + req.originalUrl
     });
 });
 
@@ -52,6 +69,7 @@ app.post('/upload', (req, res) => {
     }
 
     const f = (new Date()).toISOString();
+    console.log(f);
     const marcaFecha = f.replaceAll(':','-').replace('T','-').replace('.','-').replace('Z','');
     
     const imgPath = path.join(__dirname, "/uploads/", marcaFecha  + "-" + img.name);
