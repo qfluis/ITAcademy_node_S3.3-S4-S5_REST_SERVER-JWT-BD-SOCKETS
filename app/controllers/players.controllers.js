@@ -41,9 +41,9 @@ const postPlayers = async (req = request, res = response) => {
 const putPlayers = async (req = request, res) => {
     const { id, nombre, nuevoNombre } = req.body
 
-    if (!(nombre || id)  || !nuevoNombre || nombre === "" || nuevoNombre === "") {
+    if ((!nombre || nombre ==="") && !id) {
         res.status(400).json({
-            msg:"Falta información. Es necesario facilitar id o nombre, además del nuevoNombre"
+            msg:"Falta información. Es necesario facilitar id o nombre"
         })
         return;
     }

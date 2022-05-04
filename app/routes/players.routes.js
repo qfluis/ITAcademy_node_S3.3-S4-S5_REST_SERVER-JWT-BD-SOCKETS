@@ -23,7 +23,10 @@ router.use(validarJWT);
 router.post('/', postPlayers);
 
 // PUT /players: modifica el nom del jugador
-router.put('/', putPlayers);
+router.put('/', [
+    check('nuevoNombre', 'Debes introducir el nuevo nombre').isLength({min: 1}),
+    validarCampos
+], putPlayers);
 
 // POST /players/{id}/games: un jugador específic realitza una tirada
 router.post('/:id/games',[
