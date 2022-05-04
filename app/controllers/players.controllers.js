@@ -85,7 +85,7 @@ const putPlayers = async (req = request, res) => {
 // POST /players/{id}/games: un jugador específic realitza una tirada
 const postPlayersGames = async (req = request, res) => {
     let { id } = req.params;
-    id = parseInt(id);
+    //id = parseInt(id);
    
     if(! await juego.existeJugador({id})){
         res.status(400).json({
@@ -106,7 +106,7 @@ const postPlayersGames = async (req = request, res) => {
 const deletePlayersGames = async (req, res) => {
 
     let { id } = req.params;
-    id = parseInt(id);
+    //id = parseInt(id);
    
     if(! await juego.existeJugador({id})){
         res.status(400).json({

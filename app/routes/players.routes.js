@@ -2,16 +2,6 @@ const { Router } = require('express');
 const { check } = require('express-validator');
 const { validarCampos } = require('../middlewares/validar-campos');
 const { validarJWT } = require('../middlewares/validar-jwt');
-// TODO: implementar validación campos
-/*
-
-router.post('/login',[
-    check('email', 'Debes especificar un email válido').isEmail(),
-    check('pass', 'Debes introducir un password de al menos 6 caracteres').isLength({min:6}),
-    validarCampos
-], login);
-
-*/
 
 const { postPlayers, 
         putPlayers, 
@@ -26,25 +16,35 @@ const { postPlayers,
 
 const router = Router();
 
+// valida JWT en todas las rutas de api/players
+router.use(validarJWT);
+
 // POST /players: crea un jugador
-router.post('/',[
-    validarJWT
-], postPlayers);
+router.post('/', postPlayers);
 
 // PUT /players: modifica el nom del jugador
 router.put('/', putPlayers);
 
 // POST /players/{id}/games: un jugador específic realitza una tirada
-router.post('/:id/games', postPlayersGames);
+router.post('/:id/games',[
+    check('id', 'debes facilitar un id de jugador válido').isNumeric().toInt(),
+    validarCampos
+], postPlayersGames);
 
 // DELETE /players/{id}/games: elimina les tirades del jugador
-router.delete('/:id/games', deletePlayersGames);
+router.delete('/:id/games', [
+    check('id', 'debes facilitar un id de jugador válido').isNumeric().toInt(),
+    validarCampos
+], deletePlayersGames);
 
 // GET /players: retorna el llistat de tots els jugadors del sistema amb el seu percentatge mig d’èxits
 router.get('/', getPlayers);
 
 // GET /players/{id}/games: retorna el llistat de jugades per un jugador.
-router.get('/:id/games', getPlayersGames);
+router.get('/:id/games', [
+    check('id', 'debes facilitar un id de jugador válido').isNumeric().toInt(),
+    validarCampos
+] , getPlayersGames);
 
 // GET /players/ranking: retorna el percentatge mig d’èxits del conjunt de tots els jugadors
 router.get('/ranking', getRanking);
