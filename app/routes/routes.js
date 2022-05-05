@@ -35,7 +35,6 @@ router.get('/pokemon/:id', [
     validarCampos
 ], getPokemon);
 
-
 // 404
 router.use((req, res, next) => {
     res.status(404).json({

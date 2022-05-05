@@ -122,7 +122,8 @@
 						{
 							"key": "imgfile",
 							"type": "file",
-							"src": "/C:/Users/formacio/Desktop/LUIS/ITAcademy_node_S4.1_REST_SERVER-/img/2021.jpg"
+							"src": [],
+							"disabled": true
 						}
 					]
 				},
@@ -183,12 +184,12 @@
 				"header": [
 					{
 						"key": "user",
-						"value": "luisito",
+						"value": "admin",
 						"type": "text"
 					},
 					{
 						"key": "pass",
-						"value": "bleljeejejekje",
+						"value": "123456",
 						"type": "text"
 					}
 				],
@@ -216,7 +217,85 @@
 			"response": []
 		},
 		{
-			"name": "Time (N2E1 + E2) sin user y pass",
+			"name": "Time (N2E1 + E2) con username vacio",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "user",
+						"value": "admin",
+						"type": "text"
+					},
+					{
+						"key": "pass",
+						"value": "123456",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\":\"\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5555/time",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5555",
+					"path": [
+						"time"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Time (N2E1 + E2) sin username en body",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "user",
+						"value": "admin",
+						"type": "text"
+					},
+					{
+						"key": "pass",
+						"value": "123456",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5555/time",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5555",
+					"path": [
+						"time"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Time (N2E1 + E2) sin user y pass en headers",
 			"request": {
 				"method": "POST",
 				"header": [],
@@ -238,6 +317,66 @@
 					"port": "5555",
 					"path": [
 						"time"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Pokemon (newN3)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5555/pokemon/25",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5555",
+					"path": [
+						"pokemon",
+						"25"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Pokemon (newN3) numero no existe",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5555/pokemon/2500",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5555",
+					"path": [
+						"pokemon",
+						"2500"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Pokemon (newN3) numero no existe Copy",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5555/pokemon/holiwi",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5555",
+					"path": [
+						"pokemon",
+						"holiwi"
 					]
 				}
 			},

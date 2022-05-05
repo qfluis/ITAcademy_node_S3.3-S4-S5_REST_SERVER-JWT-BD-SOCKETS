@@ -8,7 +8,7 @@ npm install
 La aplicación trabaja en el puerto **5555**.
 Para iniciar el servidor:
 ```
-npm run dev
+npm start
 ```
 ## Endpoints
 ### GET /user
@@ -38,6 +38,21 @@ Devuelve fecha y hora del server en el siguiente formato:
 En los *headers* de la petición se deben incluir las keys:
 - user: usuario
 - pass: password
+
+### GET /pokemon/{id}
+Devuelve un pokemon de la pokeapi (https://pokeapi.co/).
+Con el siguiente formato.
+```
+{
+    "status": "OK",
+    "pokemon": {
+        "name": "pikachu",
+        "height": 4,
+        "weight": 60,
+        "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png"
+    }
+}
+```
 
 ## Testeo endpoints con postman
 En carpeta */postman* se puede encontrar el fichero **POSTMAN.json** que contiene la colección de peticiones para probar la API. En la subcarpeta *S4.1* están las imágenes/archivos utilizados.
