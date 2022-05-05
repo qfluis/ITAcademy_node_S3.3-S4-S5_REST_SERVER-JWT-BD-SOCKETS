@@ -24,9 +24,46 @@ const authUser = (req, res, next) => {
     next();
 }
 
+const validarImagen = (req, res, next) => {
 
+    const img = req.files?.imgfile; //const img = (req.files) ? req.files.img : null; 
+    // comprobar si hay fichero imagen
+    if (!img) {
+        res.status(400).json({
+            status:"Error",
+            msg:"No se ha subido fichero"
+        });
+        return;
+    }    
+
+    // Comprobar extensión
+    const imgNameArr = img.name.split('.');
+    const imgExt = imgNameArr[imgNameArr.length-1].toLowerCase();
+    const extensionesValidas = ['png','jpg','gif'];
+
+    if (!extensionesValidas.includes(imgExt)){
+        res.status(415).json({
+            status:"Error",
+            msg:"Extensión " + imgExt + " no válida. Las extensiones válidas son: " + extensionesValidas
+        });
+        return;
+    }
+
+    next();
+}
+
+
+
+
+const noCacheControl = (req, res, next) => {
+    //res.set('Cache-control', 'public, max-age=0');
+    res.set('Cache-control', 'no-cache'); 
+    next();
+}
 
 module.exports = {
     validarCampos,
-    authUser
+    authUser,
+    validarImagen,
+    noCacheControl
 }

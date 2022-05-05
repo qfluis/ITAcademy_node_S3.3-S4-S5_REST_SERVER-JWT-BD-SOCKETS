@@ -1,11 +1,5 @@
-const respuestaEstandar = (res, statusCode, status, msg) => {
-    res.status(statusCode).json({
-        status,
-        msg
-    });
-}
-
-
+const path = require('path');
+const axios = require('axios').default;
 
 
 // Nivel 1 Ejercicio 1 ##################################################################
@@ -13,7 +7,8 @@ const getUser = (req, res) => {
     res.status(200).json({
         name: 'Luis',
         edad: 41,
-        url: req.protocol + "://" + req.get('Host') + req.originalUrl
+        url: req.protocol + "://" + req.get('Host') + req.originalUrl,
+        //url2: req.protocol + "://" + req.get('Host') + req.url  
     });
 }
 
@@ -23,51 +18,30 @@ const uploadFile = (req, res) => {
     
     const img = req.files?.imgfile;
     //const img = (req.files) ? req.files.img : null; 
-   
-    if (!img) { // !req.files || !req.files.imgfile
-        respuestaEstandar(res, 400, "Error", "Nos se ha subido fichero");
-        return;
-    }        
-
-    const imgNameArr = img.name.split('.');
-    const imgExt = imgNameArr[imgNameArr.length-1].toLowerCase();
-    const extensionesValidas = ['png','jpg','gif'];
-
-    if (!extensionesValidas.includes(imgExt)){
-        const msg = "Extensión " + imgExt + " no válida. Las extensiones válidas son: " + extensionesValidas;
-        respuestaEstandar(res, 415, "Error", msg);
-        return;
-    }
-
     const f = (new Date()).toISOString();
-    console.log(f);
     const marcaFecha = f.replaceAll(':','-').replace('T','-').replace('.','-').replace('Z','');
-    
     const imgPath = path.join(__dirname, "../uploads/", marcaFecha  + "-" + img.name);
 
     img.mv(imgPath, ( err ) => {
         if ( err ){
-            respuestaEstandar(res, 500, "Error", err);
+            res.status(500).json({
+                status:"Error",
+                msg:"Error al subir fichero",
+                err
+            });
+
             return;
         }
 
-        respuestaEstandar(res, 200, "OK", "imagen subida");
+        res.status(200).json({
+            status:"OK",
+            msg:"imagen subida"
+        });
     });    
 }
 
-
-
-
-
-
-
-
 const postTime = ( req, resp ) => {
-    const user = req.body?.username;
-    if(!user) {
-        respuestaEstandar(res, 401, "Error", "Usuario no indicado");
-        return
-    }
+    
     const today =(new Date()).toISOString().split('T');
     resp.status(200).json({
         fecha: today[0],
@@ -75,9 +49,28 @@ const postTime = ( req, resp ) => {
     })
 }
 
+const getPokemon = async (req, res) => {
+    const { id } = req.params;
+
+    const response = await axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`);
+    //const data = await response.json();
+
+
+
+
+
+    
+    res.status(200).json({
+        status:"OK",
+        response
+    })
+
+}
+
 
 module.exports = {
     getUser,
     uploadFile,
-    postTime
+    postTime,
+    getPokemon
 }
