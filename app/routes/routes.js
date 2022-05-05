@@ -15,13 +15,10 @@ router.get('/user', getUser);
 
 // Nivel 1 Ejercicio 2 #####
 router.post('/upload',[
-    //check('files','Debe adjuntarse un archivo').not().isEmpty(),
-    //validarCampos, // TODO:OOOJO
     validarImagen
-], uploadFile );  // TODO: MIDDLEWARES
+], uploadFile );
 
-// Nivel 2 Ejercicio 1 + Nivel 3 Ejercicio 1 ######  // TODO: Añadir a middlewares
-
+// Nivel 2 Ejercicio 1 + Nivel 3 Ejercicio 1 (OLD) ######  //
 router.post('/time',[
     cors(),  // en la documentación aparece con los parentesis...
     noCacheControl,

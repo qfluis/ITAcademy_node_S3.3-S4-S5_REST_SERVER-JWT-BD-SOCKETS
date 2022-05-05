@@ -1,8 +1,6 @@
 const path = require('path');
 const axios = require('axios').default;
 
-
-// Nivel 1 Ejercicio 1 ##################################################################
 const getUser = (req, res) => {
     res.status(200).json({
         name: 'Luis',
@@ -12,8 +10,6 @@ const getUser = (req, res) => {
     });
 }
 
-
-// Nivel 1 Ejercicio 2 ##################################################################
 const uploadFile = (req, res) => {
     
     const img = req.files?.imgfile;
@@ -40,6 +36,8 @@ const uploadFile = (req, res) => {
     });    
 }
 
+
+
 const postTime = ( req, resp ) => {
     
     const today =(new Date()).toISOString().split('T');
@@ -51,19 +49,33 @@ const postTime = ( req, resp ) => {
 
 const getPokemon = async (req, res) => {
     const { id } = req.params;
+    let response;
 
-    const response = await axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`);
-    //const data = await response.json();
-
-
-
-
-
+    try {
+        response = await axios.get(`https://pokeapi.co/api/v2/pokemon/${id}/`);
+    } catch ( err ){
+        console.log();
+        res.status(err.response.status).json({
+            status: "Error",
+            msg: err.message
+        });
+        return
+    }
+     
+    
+    const {name, height, weight, sprites} = response.data;
+    
+    const pokemon = {
+        name,
+        height,
+        weight,
+        sprite: sprites.front_default || "no sprite available"
+    }
     
     res.status(200).json({
         status:"OK",
-        response
-    })
+        pokemon
+    });
 
 }
 

@@ -52,9 +52,6 @@ const validarImagen = (req, res, next) => {
     next();
 }
 
-
-
-
 const noCacheControl = (req, res, next) => {
     //res.set('Cache-control', 'public, max-age=0');
     res.set('Cache-control', 'no-cache'); 
