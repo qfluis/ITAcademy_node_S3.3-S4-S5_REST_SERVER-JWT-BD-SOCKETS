@@ -84,6 +84,7 @@ class Juego {
     }
 
     async rankingJugadores(){
+        // TODO: cambiar null por anónimo en el nombre...
         return await Jugador.findAll({
             attributes: ['id', 'nombre', 'juegos', 'juegosGanados', 'ratio'],
             order: [['ratio', 'DESC'], ['juegos', 'DESC']]

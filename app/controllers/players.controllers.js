@@ -76,7 +76,7 @@ const putPlayers = async (req = request, res) => {
     }
 
     //🙂
-    res.json({
+    res.status(200).json({
         msg:"Nombre de jugador modificado",
         jugadorModificado
     });
@@ -117,7 +117,7 @@ const deletePlayersGames = async (req, res) => {
 
     const jugador = await juego.eliminarTiradasJugador(id);
 
-    res.json({
+    res.status(200).json({
         msg:"Eliminadas las tiradas del jugador",
         jugador
     });
@@ -128,7 +128,7 @@ const getPlayers = async (req, res) => {
     
     const jugadores = await juego.rankingJugadores();
 
-    res.json({
+    res.status(200).json({
             msg:"Listado obtenido",
             jugadores
         });
@@ -157,7 +157,7 @@ const getPlayersGames = async (req = request, res) => {
 
     const jugadas = await juego.getJugadas(id);
 
-    res.json({
+    res.status(200).json({
             msg:"Listado obtenido correctamente",
             jugadas: jugadas
         });
@@ -169,22 +169,18 @@ const getRanking = async (req, res) => {
     
     const ratioAciertos = await juego.obtenerRatioTotal();
     
-    res.json({
+    res.status(200).json({
             msg:"Promedio aciertos jugadores obtenido correctamente",
             ratioAciertos
         });
     }
 
-// TODO: Por aquí 🤣
 // GET /players/ranking/loser: retorna el jugador amb pitjor percentatge d’èxit
 const getRankingLoser = async (req, res) => {
-    /*
-    const jugadores = await juego.rankingJugadores();
-    const loser = jugadores[jugadores.length-1];
-    */
+
     const loser = await juego.rankingLoser();
 
-    res.json({
+    res.status(200).json({
         msg:"Loser obtenido correctamente",
         loser
     });
@@ -193,10 +189,12 @@ const getRankingLoser = async (req, res) => {
 // GET /players/ranking/winner: retorna el jugador amb millor percentatge d’èxit
 const getRankingWinner = async (req, res) => {
 
+    //TODO: optimizar ranking winner como con Loser
+
     const jugadores = await juego.rankingJugadores();
     const winner = jugadores[0];
 
-    res.json({
+    res.status(200).json({
         msg:"Winner obtenido correctamente",
         winner
     });
