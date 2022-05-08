@@ -41,7 +41,19 @@ catch (error) {
 }
 }
 
+
 //TODO PUT /players: modifica el nom del jugador
 
+
+
+
+
+
+
+
+
+
+
+let fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
 module.exports = {
   playersPost,playersGet }
