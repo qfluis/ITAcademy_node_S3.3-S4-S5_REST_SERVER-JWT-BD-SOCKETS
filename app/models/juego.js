@@ -1,8 +1,6 @@
 const Jugador  = require('./jugador');
 const Jugada = require('./Jugada');
 
-// TODO: "TRYCATHEAR accesos a BD..."
-
 class Juego {
     constructor(){
         this.PUNTOS_VICTORIA = 7;        
@@ -66,7 +64,6 @@ class Juego {
     }
     async eliminarTiradasJugador(idJugador) {
         const jugador = await this.getJugador(idJugador);
-        //const jugadas = await this.getJugadas(idJugador);
 
         jugador.juegos = 0;
         jugador.juegosGanados = 0;
@@ -78,32 +75,47 @@ class Juego {
         });
 
         jugador.save();
-        //Jugada.save();
 
         return jugador;
     }
 
     async rankingJugadores(){
-        // TODO: cambiar null por anónimo en el nombre...
-        return await Jugador.findAll({
+        return this.cambiarNullPorAnonimo(await Jugador.findAll({
             attributes: ['id', 'nombre', 'juegos', 'juegosGanados', 'ratio'],
             order: [['ratio', 'DESC'], ['juegos', 'DESC']]
-        });
+        }));
     }
 
     async rankingLoser(){
-        return await Jugador.findOne({
+        const resultado = await Jugador.findOne({
             attributes: ['id', 'nombre', 'juegos', 'juegosGanados', 'ratio'],
             order: [['ratio', 'ASC'], ['juegos', 'ASC']]
         });
+        if (resultado.nombre === null) resultado.nombre = "ANONIMO";
+
+        return resultado;
     }
 
     async rankingWinner(){
-        return await Jugador.findOne({
+        const resultado = await Jugador.findOne({
             attributes: ['id', 'nombre', 'juegos', 'juegosGanados', 'ratio'],
             order: [['ratio', 'DESC'], ['juegos', 'DESC']]
         });
+        if (resultado.nombre === null) resultado.nombre = "ANONIMO";
+
+        return resultado;
     }
+
+    cambiarNullPorAnonimo(lista) {
+        for(let el of lista) {
+            if (el.nombre === null ) el.nombre = "ANONIMO";
+        }
+        return lista;
+    }
+
+    
+
+
     
     async obtenerRatioTotal(){
         const jugadas = await Jugada.findAll({

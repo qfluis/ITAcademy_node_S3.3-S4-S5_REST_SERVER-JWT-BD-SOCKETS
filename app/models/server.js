@@ -39,7 +39,6 @@ class Server {
         this.app.use( express.json() );
 
         // Directorio público (no necesario para los puntos obligatorios de la práctica)
-        
         const url = path.resolve(__dirname,'../','public');
         this.app.use(express.static(url));
     }
