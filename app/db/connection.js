@@ -5,9 +5,9 @@ const { MYSQL_DB_NAME, MYSQL_USER, MYSQL_PASS, MYSQL_HOST, MYSQL_PORT } = proces
 
 const db = new Sequelize(MYSQL_DB_NAME, MYSQL_USER, MYSQL_PASS, {
     host: MYSQL_HOST,
-    port: MYSQL_PORT,        // por defecto 3306 
+    port: MYSQL_PORT, // por defecto 3306 
     dialect: 'mysql', 
-    //logging: false   // fines educativos
+    logging: false    // comentar esta linea si necesitas detalle de las consultas
 });
 
 db.sync();

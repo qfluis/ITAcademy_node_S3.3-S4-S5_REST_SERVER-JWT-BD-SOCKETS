@@ -7,7 +7,7 @@ const login = async (req = request, res = response) => {
     const { API_LOGIN_EMAIL, API_LOGIN_PASS } = process.env;
  
     if (email !== API_LOGIN_EMAIL || pass !== API_LOGIN_PASS ) {
-        res.status(400).json({
+        res.status(401).json({
             msg: "email y/o contraseña incorrectos"
         });
         return;
@@ -16,7 +16,7 @@ const login = async (req = request, res = response) => {
     // Generar JWT
     const token = await generarJWT( email );
 
-    res.json({
+    res.status(200).json({
         msg: "login correcto 👍",
         token
     });    

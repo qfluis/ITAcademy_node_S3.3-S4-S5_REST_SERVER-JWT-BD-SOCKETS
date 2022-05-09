@@ -30,7 +30,7 @@ const postPlayers = async (req = request, res = response) => {
         return;
     }
     // 🙂
-    res.status(200).json({
+    res.status(201).json({
         msg:"Usuario creado con éxito",
         jugador
     });
@@ -76,7 +76,7 @@ const putPlayers = async (req = request, res) => {
     }
 
     //🙂
-    res.status(200).json({
+    res.status(201).json({
         msg:"Nombre de jugador modificado",
         jugadorModificado
     });
@@ -96,7 +96,7 @@ const postPlayersGames = async (req = request, res) => {
 
     const jugada = await juego.jugar(id);
 
-    res.json({
+    res.status(201).json({
         msg:"Tirada efectuada",
         jugada
     });
