@@ -32,6 +32,6 @@ const Jugador = db.define('Jugador', {
   tableName: 'jugadores'
 });
 
-db.sync();
+//Jugador.sync();
 
 module.exports = Jugador;

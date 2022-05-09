@@ -28,6 +28,8 @@ const Jugada = db.define('Jugada', {
   tableName: 'jugadas'
 });
 
-db.sync();
+//Jugada.sync();
+
+//db.sync();
 
 module.exports = Jugada;

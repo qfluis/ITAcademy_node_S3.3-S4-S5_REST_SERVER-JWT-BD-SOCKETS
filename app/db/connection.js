@@ -10,5 +10,7 @@ const db = new Sequelize(MYSQL_DB_NAME, MYSQL_USER, MYSQL_PASS, {
     //logging: false   // fines educativos
 });
 
+db.sync();
+
 module.exports = db;
 
