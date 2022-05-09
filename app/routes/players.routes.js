@@ -59,16 +59,6 @@ router.get('/ranking/loser', getRankingLoser);
 router.get('/ranking/winner', getRankingWinner);
 
 // Not found
-//router.get('*', playersNotFound)
 router.use(playersNotFound);
-/*
-// 404
-router.use((req, res, next) => {
-    res.status(404).json({
-        status:"Error", 
-        msg:"Ups! not found"
-    });
-    return;
-});*/
 
 module.exports = router;

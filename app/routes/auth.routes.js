@@ -14,19 +14,9 @@ router.post('/login',[
 ], login);
 
 // Not found
-//router.get('*', authNotFound);
 router.use(authNotFound);
 
 
-/*
-// 404
-router.use((req, res, next) => {
-    res.status(404).json({
-        status:"Error", 
-        msg:"Ups! not found"
-    });
-    return;
-});
-*/
+
 
 module.exports = router;
