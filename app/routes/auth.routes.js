@@ -14,7 +14,9 @@ router.post('/login',[
 ], login);
 
 // Not found
-router.get('*', authNotFound);
+//router.get('*', authNotFound);
+router.use(authNotFound);
+
 
 /*
 // 404

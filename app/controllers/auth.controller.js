@@ -17,14 +17,9 @@ const login = async (req = request, res = response) => {
     const token = await generarJWT( email );
 
     res.json({
-        msg: "holiwi logiwi",
+        msg: "login correcto 👍",
         token
-    });
-
-
-
-
-    
+    });    
 }
 
 const authNotFound = (req, res) => {
