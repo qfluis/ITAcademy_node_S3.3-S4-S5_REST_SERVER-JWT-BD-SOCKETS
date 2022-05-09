@@ -91,7 +91,7 @@ class Juego {
             attributes: ['id', 'nombre', 'juegos', 'juegosGanados', 'ratio'],
             order: [['ratio', 'ASC'], ['juegos', 'ASC']]
         });
-        if (resultado.nombre === null) resultado.nombre = "ANONIMO";
+        if (resultado && resultado.nombre === null) resultado.nombre = "ANONIMO";
 
         return resultado;
     }
@@ -101,7 +101,7 @@ class Juego {
             attributes: ['id', 'nombre', 'juegos', 'juegosGanados', 'ratio'],
             order: [['ratio', 'DESC'], ['juegos', 'DESC']]
         });
-        if (resultado.nombre === null) resultado.nombre = "ANONIMO";
+        if (resultado && resultado.nombre === null) resultado.nombre = "ANONIMO";
 
         return resultado;
     }
