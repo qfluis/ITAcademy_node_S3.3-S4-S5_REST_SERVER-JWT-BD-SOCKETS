@@ -15,7 +15,7 @@ const validarJWT = (req = request, res = response, next) => {
     try {
         
         const payload = jwt.verify(token, process.env.JWT_SECRET_PRIVATE_KEY);
-        console.log(payload.email, 'ha hecho una petición');
+        //console.log(payload.email, 'ha hecho una petición');
         next();  
 
     } catch (error) {

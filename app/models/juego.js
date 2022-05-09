@@ -29,7 +29,6 @@ class Juego {
         const jugador = (id)
                             ?await Jugador.findOne({ where: { id }})
                             :await Jugador.findOne({ where: { nombre } });
-        console.log(jugador!==null);
         return (jugador !== null);
     }    
 
