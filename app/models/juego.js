@@ -66,6 +66,7 @@ class Juego {
 
         jugador.juegos = 0;
         jugador.juegosGanados = 0;
+        jugador.ratio = 0;
 
         await Jugada.destroy({
             where: {

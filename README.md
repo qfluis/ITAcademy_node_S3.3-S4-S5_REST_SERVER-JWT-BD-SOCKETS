@@ -1,44 +1,209 @@
 # Entrega 4.2: Node REST + DB + JWT
 ## inicializar proyecto
 Es necesario tener instalado npm.
-Para instalar dependencias:
+### Instalar dependencias
 ```
 npm install
 ```
-La aplicación trabaja en el puerto **5555**.
-Para iniciar el servidor:
+### Configurar variables de entorno:
+configurar fichero .env en la carpeta raiz del proyecto. Puedes encontrar en .env-dev las variables de entorno utilizadas en desarrollo.
+```
+PORT=3333
+MYSQL_DB_NAME=dado_juego
+MYSQL_USER=root
+MYSQL_PASS=olakease1234!
+MYSQL_HOST=localhost
+MYSQL_PORT=3306
+API_LOGIN_EMAIL=qfluis@gmail.com
+API_LOGIN_PASS=123456
+JWT_SECRET_PRIVATE_KEY=noselodigasanadie
+```
+### Base de datos
+Es necesario tener una base de datos creada en mysql, con el nombre indicado en la variable de entorno *MYSQL_DB_NAME*. Las tablas se crean automáticamente.
+Puedes encontrar el script SQL para crear la BD en el fichero `./mysql/create_bd.sql`, el código que contiene es el siguiente:
+```
+CREATE SCHEMA `dado_juego` DEFAULT CHARACTER SET utf8mb4 ;
+```
+
+### Iniciar el servidor:
 ```
 npm start
 ```
-TODO: CAMBIAR ENDPOINTS...
-## Endpoints
-### GET /user
-Devuelve el siguiente objeto JSON:
+## Servidor web
+Este servidor puede mostrar los archivos situados en la carpeta public. El endpoint es "/"
+
+## Endpoints API
+A tener en cuenta:
+- Todas las peticiones a endpoints (excepto POST api/auth/login), deberán incluir en headers la key **jwt-token**, con el valor del token de autenticación. 
+- Para todas las peticiones que requieran un body, este deberá estar en formato JSON.
+### POST /api/auth/login
+Esta petición nos permite autenticarnos. Deberemos incluir en el body de la petición los atributos *email* y *pass*.
+Si el login es correcto recibiremos como respuesta el JWT token necesario para poder realizar todas las peticiones a la api.
+Ejemplo de body de la petición:
 ```
 {
-    "name": "Luis",
-    "edad": 41,
-    "url": "localhost/user"
+    "email":"qfluis@gmail.com",
+    "pass":"123456"
 }
 ```
-### POST /upload
-Permite subir imágenes JPG, PNG y GIF.
-Se debe pasar la imágen vía formulario con la key/name **imgfile**.
-- En caso de éxito devuelve un código 200.
-- En caso de error devuelve un código 400 o 415.
-- Si hay error en el server al guardar la imagen devolverá un 500.
-
-### POST /time
-Devuelve fecha y hora del server en el siguiente formato:
+Ejemplo de respuesta:
 ```
 {
-    "fecha": "2022-04-22",
-    "hora": "08:41:18"
+    "msg": "login correcto 👍",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InFmbHVpc0BnbWFpbC5jb20iLCJpYXQiOjE2NTIxMzE3NDMsImV4cCI6MTY4MzY2Nzc0M30.Vcx_QXRf0ZFT8KOtilIJJiP8sbzZFoREUNxXUXOYtIw"
 }
 ```
-En los *headers* de la petición se deben incluir las keys:
-- user: usuario
-- pass: password
+### POST /api/players
+Crea un jugador, si se le facilita el atributo *nombre*, creará el jugador con ese nombre, siempre y cuando no esté ya en la base de datos. Si no se le facilita *nombre* lo dará de alta sin especificar el nombre.
+Si el usuario se ha creado con éxito obtendremos una respuesta con status 201. Si el usuario ya existe obtendrás una respuesta con status 400.
+Ejemplo del body de una petición, enviando el nombre:
+```
+{
+    "nombre":"Luis"
+}
+```
 
-## Testeo endpoints con postman
-En carpeta */postman* se puede encontrar el fichero **POSTMAN.json** que contiene la colección de peticiones para probar la API. En la subcarpeta *S4.1* están las imágenes/archivos utilizados.
+### PUT /api/players
+Modifica un jugador, pasando el *id* o *nombre* además del *nuevoNombre*. Si se facilitan *id* y *nombre* el sistema hará la petición teniendo en cuenta el *id*. Si la petición es exitosa recibirás una respuesta con status 201. Si el *nuevoNombre* ya está en la base de datos obtendrás una respuesta con status 400.
+Ejemplo del body de la petición:
+```
+{
+    "id":4,
+    "nuevoNombre":"Wow"
+}
+```
+### POST /api/players/{id}/games
+El jugador con el *id* especificado como parámetro, realiza una tirada. El resultado se envia como respuesta a la petición, además de guardarse en la base de datos.
+No hay que incluir parámetros en el body.
+Ejemplo de respuesta a la petición:
+```
+{
+    "msg": "Tirada efectuada",
+    "jugada": {
+        "id": 78,
+        "idJugador": 1,
+        "dado1": 1,
+        "dado2": 2,
+        "resultado": 3,
+        "exito": false,
+        "updatedAt": "2022-05-09T21:09:18.628Z",
+        "createdAt": "2022-05-09T21:09:18.628Z"
+    }
+}
+```
+### DELETE /api/players/{id}/games
+Elimina todos los juegos que haya hecho un jugador, cuyo *id* se facilita como parámetro de la petición. Las estadísticas del jugador también serán eliminadas.
+Si la petición es exitosa se recibe una respuesta con status 200.
+
+### GET /api/players
+Obtenemos listado de jugadores junto con sus estadísticas.
+Ejemplo de respuesta exitosa (status 200): 
+```
+{
+    "msg": "Listado obtenido",
+    "jugadores": [
+        {
+            "id": 1,
+            "nombre": "Luisetete",
+            "juegos": 43,
+            "juegosGanados": 7,
+            "ratio": "0.16"
+        },
+        {
+            "id": 2,
+            "nombre": "Cris",
+            "juegos": 22,
+            "juegosGanados": 3,
+            "ratio": "0.14"
+        },
+        {
+            "id": 3,
+            "nombre": "Kika",
+            "juegos": 0,
+            "juegosGanados": 0,
+            "ratio": "0.00"
+        }
+    ]
+}
+```
+### GET /api/players/{id}/games
+Obtenemos el listado de juegos de un jugador. Debemos especificar el *id* del usuario como parámetro de la petición.
+Ejemplo de respuesta exitosa (status 200):
+```
+{
+    "msg": "Listado obtenido correctamente",
+    "jugadas": [
+        {
+            "id": 1,
+            "idJugador": 1,
+            "dado1": 4,
+            "dado2": 2,
+            "resultado": 6,
+            "exito": false,
+            "createdAt": "2022-05-03T13:25:03.000Z",
+            "updatedAt": "2022-05-03T13:25:03.000Z"
+        },
+        {
+            "id": 2,
+            "idJugador": 1,
+            "dado1": 4,
+            "dado2": 5,
+            "resultado": 9,
+            "exito": false,
+            "createdAt": "2022-05-03T13:25:04.000Z",
+            "updatedAt": "2022-05-03T13:25:04.000Z"
+        },
+        {
+            "id": 3,
+            "idJugador": 1,
+            "dado1": 4,
+            "dado2": 5,
+            "resultado": 9,
+            "exito": false,
+            "createdAt": "2022-05-03T13:25:05.000Z",
+            "updatedAt": "2022-05-03T13:25:05.000Z"
+        }      
+    ]
+}
+```
+### GET /api/players/ranking
+Esta petición nos devuelve el ratio de aciertos de los jugadores.
+Un ejemplo de respuesta exitosa (status 200):
+```
+{
+    "msg": "Promedio aciertos jugadores obtenido correctamente",
+    "ratioAciertos": 0.15384615384615385
+}
+```
+### GET /api/players/ranking/loser
+Esta petición nos devuelve el peor jugador.
+Un ejemplo de la respuesta exitosa (status 200):
+```
+{
+    "msg": "Loser obtenido correctamente",
+    "loser": {
+        "id": 3,
+        "nombre": "Kika",
+        "juegos": 0,
+        "juegosGanados": 0,
+        "ratio": "0.00"
+    }
+}
+```
+### GET /api/players/ranking/winner
+Esta petición nos devuelve el mejor jugador.
+Un ejemplo de la respuesta exitosa (status 200):
+```
+{
+    "msg": "Winner obtenido correctamente",
+    "winner": {
+        "id": 1,
+        "nombre": "Luisetete",
+        "juegos": 43,
+        "juegosGanados": 7,
+        "ratio": "0.16"
+    }
+}
+```
+
+

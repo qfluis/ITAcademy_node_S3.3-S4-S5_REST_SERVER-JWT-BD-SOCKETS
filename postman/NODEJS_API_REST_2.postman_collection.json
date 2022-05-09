@@ -966,5 +966,32 @@
 			},
 			"response": []
 		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "jwt-token",
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InFmbHVpc0BnbWFpbC5jb20iLCJpYXQiOjE2NTIxMjk2OTIsImV4cCI6MTY4MzY2NTY5Mn0.NlvfBrX1SFPIXOtif9LhoqWtZwMZlFA4CXr5va-kjoI",
+			"type": "string"
+		}
 	]
 }
