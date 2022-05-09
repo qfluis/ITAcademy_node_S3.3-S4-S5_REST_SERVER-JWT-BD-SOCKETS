@@ -1,7 +1,7 @@
 
 module.exports = (sequelize, type) => {
     return sequelize.define('player', {
-        id: {
+        idPlayer: {
             type: type.INTEGER,
             primaryKey: true,
             autoIncrement: true
