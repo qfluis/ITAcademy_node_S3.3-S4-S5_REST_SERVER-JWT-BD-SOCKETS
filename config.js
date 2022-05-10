@@ -1,4 +1,4 @@
-const config = {
+const config_db = {
   user: "root",
   password: "root1111_",
   database: "dice_game",
@@ -7,4 +7,4 @@ const config = {
   port: process.env.PORT || 3306,
 }
 
-module.exports = config
+module.exports = config_db

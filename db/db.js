@@ -1,3 +1,11 @@
+const 
+mysql = require('mysql2'),
+
+config_db = require('../config'),
+sequelize = new Sequelize(configDB.database, configDB.user, configDB.password, { dialect: 'mysql' });
+
+
+
 const Sequelize = require('sequelize');
 
 const PlayerMdl = require('./models/playerMdl')
