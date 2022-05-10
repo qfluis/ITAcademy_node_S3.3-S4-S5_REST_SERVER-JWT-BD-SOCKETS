@@ -1,16 +1,14 @@
 const Sequelize = require('sequelize');
 
-const config = require('./config')
-
 const PlayerMdl = require('./db/models/playerMdl')
 
 //const MatchesMdl = require('./db/models/matchesMdl')
 
-const sequelize = new Sequelize(config.database, config.user, config.password, {
+const sequelize = new Sequelize('dice_game', 'root', 'root1111_', {
 
- host: config.host,
- port: config.port,
- dialect: config.dialect,
+ host: 'localhost',
+ port: 3306,
+ dialect: 'mysql',
 });
 
 const Player1 = PlayerMdl(sequelize, Sequelize)
@@ -20,13 +18,10 @@ sequelize.sync({ force: false })
 console.log('Synchronized tables');
 })
 
-/*const Match1 = MatchesMdl(sequelize, Sequelize)
-
-sequelize.sync({ force: false })
-.then(() => {
-console.log('Synchronized tables');
-})
-
+sequelize.drop()
+ .then(() => {
+  console.log("deleted tables")
+ })
 
 try {
   await sequelize.authenticate();
@@ -34,7 +29,7 @@ try {
 } catch (error) {
   console.error('Unable to connect to the database:', error);
 }
-*/
+
 module.exports = {
   Player1
 }
