@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize');
 
-const PlayerMdl = require('./db/models/playerMdl')
+const PlayerMdl = require('./models/playerMdl')
 
 //const MatchesMdl = require('./db/models/matchesMdl')
 

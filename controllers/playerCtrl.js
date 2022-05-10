@@ -1,6 +1,6 @@
 "use strict";
 
-let Player = require("../models/player.js");
+let Player = require("../models/playerMdl.js");
 
 //TODO POST /players: crea un jugador
 
