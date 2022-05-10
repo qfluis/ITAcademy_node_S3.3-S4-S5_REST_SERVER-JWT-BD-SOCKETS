@@ -13,6 +13,7 @@ const sequelize = new Sequelize('dice_game', 'root', 'root1111_', {
 
 const Player1 = PlayerMdl(sequelize, Sequelize)
 
+/*
 sequelize.sync({ force: false })
 .then(() => {
 console.log('Synchronized tables');
@@ -29,6 +30,8 @@ try {
 } catch (error) {
   console.error('Unable to connect to the database:', error);
 }
+
+*/
 
 module.exports = {
   Player1

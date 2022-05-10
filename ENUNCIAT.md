@@ -42,3 +42,5 @@ Afegix un endpoint /login que permeti accedir a un administrador amb usuari i co
 //TODO GET /players/ranking: retorna el percentatge mig d’èxits del conjunt de tots els jugadors
 //TODO GET /players/ranking/loser: retorna el jugador amb pitjor percentatge d’èxit
 //TODO GET /players/ranking/winner: retorna el jugador amb millor percentatge d’èxit
+
+    
