@@ -3,6 +3,7 @@ const Sequelize = require('sequelize');
 const config = require('./config')
 
 const PlayerMdl = require('./db/models/playerMdl')
+
 //const MatchesMdl = require('./db/models/matchesMdl')
 
 const sequelize = new Sequelize(config.database, config.user, config.password, {
@@ -25,7 +26,7 @@ sequelize.sync({ force: false })
 .then(() => {
 console.log('Synchronized tables');
 })
-*/
+
 
 try {
   await sequelize.authenticate();
@@ -33,7 +34,7 @@ try {
 } catch (error) {
   console.error('Unable to connect to the database:', error);
 }
-
+*/
 module.exports = {
   Player1
 }
