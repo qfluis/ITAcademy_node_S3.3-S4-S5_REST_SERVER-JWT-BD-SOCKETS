@@ -1,7 +1,33 @@
-const router = require('express').Router()
+const router = require("express").Router();
 
-router.get('/', (req, res) => {
-res.status(200).json({message: "Enter correctly. Works"})
-})
+const { Player } = require("../../database");
 
-module.exports = router
+router.get("/", async (req, res) => {
+  const players = await Player.findAll();
+
+  res.status(200).json({ players });
+});
+
+router.post("/", async (req, res) => {
+  const player = await Player.create(req.body);
+  res.status(200).json({ player });
+});
+
+router.put("/:playerId", async (req, res) => {
+  await Player.update(req.body, {
+      where:{ id: req.params.playerId }
+  });
+  res.status(200).json({ message: ` ${playerId} has been modified` });
+});
+
+
+router.delete("/:playerId", async (req, res) => {
+    await Player.destroy({
+        where:{ id: req.params.playerId }
+    });
+    res.status(200).json({ message: ` ${playerId} has been removed` });
+  });
+  
+
+
+module.exports = router;
