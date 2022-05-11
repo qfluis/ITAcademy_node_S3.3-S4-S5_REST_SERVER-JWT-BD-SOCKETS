@@ -1,10 +1,10 @@
 "use strict";
 
-let Player = require("../models/playerMdl.js");
+const Player = require("../models/playerMdl.js");
 
 //TODO POST /players: crea un jugador
 
-let playersPost = (req, res) => {
+const playersPost = (req, res) => {
   try {
     if (!req.body.name) {
       res.status(400).json({ message: "Bad request" });
@@ -26,7 +26,7 @@ let playersPost = (req, res) => {
 
 //TODO GET /players: mostra un jugador creat
 
-let playersGet = (req, res) => {
+const playersGet = (req, res) => {
   try {
     if (!req.body.name) {
       res.status(400).json({ message: "Bad request" });
