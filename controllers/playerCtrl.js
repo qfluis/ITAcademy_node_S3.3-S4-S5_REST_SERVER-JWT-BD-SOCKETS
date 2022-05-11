@@ -22,7 +22,7 @@ let playersPost = (req, res) => {
   } catch (error) {
     res.status(500).json({ message: "Internal Server Error" });
   }
-};
+}
 
 //TODO GET /players: mostra un jugador creat
 
@@ -48,4 +48,5 @@ catch (error) {
 
 // let fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
 module.exports = {
-  playersPost,playersGet }
+  playersPost,
+ playersGet }
