@@ -14,8 +14,6 @@ const PlayerMdl = require("../models/playerMdl");
 
 const Player1 = PlayerMdl(sequelize, Sequelize);
 
-//const MatchesMdl = require('../models/matchesMdl')
-
 sequelize.sync({ force: false }).then(() => {
   console.log("Synchronized tables");
 }).catch(error => {
