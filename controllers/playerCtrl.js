@@ -2,7 +2,7 @@
 
 const Player = require("../models/playerMdl.js");
 
-//TODO POST /players: crea un jugador
+//TODO POST /players: crea un jugador/ addPlayer
 
 const playersPost = (req, res) => {
   try {
@@ -24,7 +24,7 @@ const playersPost = (req, res) => {
   }
 }
 
-//TODO GET /players: mostra un jugador creat
+//TODO GET /players: mostra un jugador creat / Player
 
 const playersGet = (req, res) => {
   try {
@@ -42,7 +42,7 @@ catch (error) {
 }
 
 
-//TODO PUT /players: modifica el nom del jugador
+//TODO PUT /players: modifica el nom del jugador  / editPlayer
 
 
 
