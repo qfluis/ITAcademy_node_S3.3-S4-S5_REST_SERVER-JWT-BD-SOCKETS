@@ -1,8 +1,8 @@
 const router = require("express").Router();
-const bcrypt = require('bcryptjs')
+//const bcrypt = require('bcryptjs')
 
 const { Player } = require("../../db");
-const { check, validationResult } = require('express-validator')
+//const { check, validationResult } = require('express-validator')
 
 router.get("/", async (req, res) => {
   const players = await Player.findAll();
@@ -10,7 +10,7 @@ router.get("/", async (req, res) => {
   res.status(200).json({ players });
 });
 
-
+/*
 router.post('/register', async(req, res) => {
 
   req.body.password = bcrypt.hashSync(req.body.password, 10)
@@ -20,7 +20,7 @@ router.post('/register', async(req, res) => {
   res.status(200).json({message: player})
   
 })
-/*
+
 router.post("/", async (req, res) => {
   const player = await Player.create(req.body);
   res.status(200).json({ player });

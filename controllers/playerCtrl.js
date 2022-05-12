@@ -1,6 +1,5 @@
-"use strict";
 
-const Player = require("../models/playerMdl.js");
+const Player = require("../models/classPlayer");
 
 //TODO POST /players: crea un jugador/ addPlayer
 
@@ -24,29 +23,26 @@ const playersPost = (req, res) => {
   }
 }
 
+
 //TODO GET /players: mostra un jugador creat / Player
 
 const playersGet = (req, res) => {
-  try {
-    if (!req.body.name) {
-      res.status(400).json({ message: "Bad request" });
-    } else {
-      let player0 = new Player();
-      player0.name = req.body.name;
-    res.status(200).json({message:`${player0.name}, register_date: new Date`});
+    try {
+      if (!req.body.name) {
+        res.status(400).json({ message: "Bad request" });
+      } else {
+        let player0 = new Player();
+        player0.name = req.body.name;
+      res.status(200).json({message:`${player0.name}, register_date: new Date`});
+    }
   }
-}
-catch (error) {
-  res.status(500).json({ message: "Internal Server Error" });
-}
-}
+  catch (error) {
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+  }
 
 
-//TODO PUT /players: modifica el nom del jugador  / editPlayer
-
-
-
-// let fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
 module.exports = {
-  playersPost,
- playersGet }
+    playersPost,
+    playersGet
+ }

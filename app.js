@@ -5,7 +5,7 @@ const config = require("./config");
 const bodyParser = require("body-parser");
 require("dotenv").config();
 require("./db");
-const bcrypt = require('bcryptjs')
+//const bcrypt = require('bcryptjs')
 
 const apiRouter = require("./routes/api");
 const playersPost = require("./controllers/playerCtrl");
