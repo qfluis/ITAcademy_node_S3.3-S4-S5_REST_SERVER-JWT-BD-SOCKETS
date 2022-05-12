@@ -5,6 +5,7 @@ const config_db = require("./config");
 const PlayerMdl = require("./models/playerMdl");
 const GameMdl = require("./models/gameMdl");
 
+
 const sequelize = new Sequelize(
   config_db.database,
   config_db.user,
@@ -15,11 +16,13 @@ const sequelize = new Sequelize(
   }
 );
 
+/*
 const Player1 = PlayerMdl(sequelize, Sequelize);
 const Game1 = GameMdl(sequelize, Sequelize);
+*/
 
 sequelize
-  .sync({ force: false })
+  .sync()//.sync({ force: false })
   .then(() => {
     console.log("Synchronized tables");
   })
@@ -27,6 +30,7 @@ sequelize
     console.log("Has occurred an error", error);
   });
 
+  /*
 sequelize
   .drop()
   .then(() => {
@@ -35,7 +39,9 @@ sequelize
   .catch((error) => {
     console.log("Has occurred an error", error);
   });
-
+  */
+  console.log("holiwi");
 module.exports = {
-  Player1, Game1
+  //Player1, Game1
+  sequelize
 };

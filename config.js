@@ -1,9 +1,9 @@
 const config = {
-  user: "root",
-  password: "root1111_",
-  database: "dice_game2",
-  host: "localhost",
-  dialect: "mysql",
+  user: process.env.user,
+  password: process.env.password,
+  database: process.env.database,
+  host: process.env.host,
+  dialect: 'mysql',
   port: process.env.PORT || 8888,
 }
 
