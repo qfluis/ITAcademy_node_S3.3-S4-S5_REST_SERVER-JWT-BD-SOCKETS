@@ -13,15 +13,13 @@ function dice_game() {
   return { dice1, dice2, score: dice1 + dice2, result };
 }
 
-/*
+let date_now = () =>{
+    let today = new Date();
+    let date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+    let time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+    let date_time = date+' '+time;
+    return date_time;
+};
 
-function editNames() {
-    let player1 = "Player 1";
-let player2 = "Player 2";
-    player1 = prompt("Change Player1 name");
-    player2 = prompt("Change player2 name");
 
-}
-*/
-export {dice_game} 
-
+export {dice_game, date_now}
