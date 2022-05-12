@@ -9,5 +9,3 @@ module.exports = (sequelize, type) => {
         dice2: type.INTEGER,
        // idPlayer: type.INTEGER,  
        })}
-
-
