@@ -15,14 +15,14 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use("/api", apiRouter);
 
-app.post("/players", playersPost);
+/*app.post("/players", playersPost);
 app.get("/players", playersGet);
 
 app.get("/*", error);
 app.post("/*", error);
 app.put("/*", error);
 app.delete("/*", error);
-
+*/
 app.listen(config.port, () => {
   console.log(`API REST en http://localhost:${config.port}/`);
 });
