@@ -1,5 +1,5 @@
-const Jugador  = require('./jugador');
-const Jugada = require('./Jugada');
+const Jugador  = require('./mysql/Jugador');
+const Jugada = require('./mysql/Jugada');
 
 class Juego {
     constructor(){

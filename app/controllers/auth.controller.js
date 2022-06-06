@@ -22,10 +22,21 @@ const login = async (req = request, res = response) => {
     });    
 }
 
+const renewToken = async (req,res) => {
+    const { email } = req.body;
+    const token = await generarJWT( email );
+
+    res.status(200).json({
+        msg: "Token renovado 👍",
+        token
+    });  
+
+}
+
 const authNotFound = (req, res) => {
     res.status(404).json({
         msg: req.path + " - Endpoint no válido"
     });
 }
 
-module.exports = { login, authNotFound }
+module.exports = { login, authNotFound, renewToken }
