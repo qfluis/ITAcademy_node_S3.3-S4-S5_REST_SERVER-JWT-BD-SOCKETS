@@ -1,5 +1,5 @@
 const { DataTypes } = require('sequelize');
-const db = require('../../db/connection-mysql');
+const db = require('../connection-mysql');
 
 const Jugador = db.define('Jugador', {
   id:{

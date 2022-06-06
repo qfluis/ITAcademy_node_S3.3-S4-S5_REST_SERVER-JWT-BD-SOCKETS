@@ -1,7 +1,20 @@
 const express = require('express');
-const db = require('../db/connection-mysql');
+require('dotenv').config();
+
+const {BD} = process.env;
+let db;
+if (BD === 'mysql') {
+    console.log(BD);
+    db = require('../db/connection-mysql');
+} else { // Mongo
+    console.log(BD);
+    db = require('../db/connection-mongo');
+}
+
+
 const cors = require('cors');
 //const path = require('path');
+
 
 class Server {
     constructor() {
@@ -22,13 +35,18 @@ class Server {
     }
 
     async dbConnection() {
-        try {            
-            await db.authenticate();
-            console.log("BD Inicializada");
-        } catch (error) {
-            console.log( error );
-            throw new Error( error );
-        }
+        if(BD === 'mysql'){
+            try {            
+                await db.authenticate();
+                console.log("BD MYSQL Inicializada");
+            } catch (error) {
+                console.log( error );
+                throw new Error( error );
+            }
+        } else {
+            await db();
+            console.log('BD Mongo inicializada');
+        }       
     }
 
     middlewares() {

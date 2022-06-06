@@ -1,127 +1,59 @@
-const Jugador  = require('./mysql/Jugador');
-const Jugada = require('./mysql/Jugada');
+//const Jugador  = require('../db/mysql-models/Jugador');
+//const Jugada = require('../db/mysql-models/Jugada');
+// TODO seleccionar entre mysql/mongo
+const {BD} = process.env;
+let controladorBD;
+if (BD==='mysql') {
+    ControladorBD = require('../db/controlador-BD-mysql');
+} else {
+    //ControladorBD = // MONGOOOOO
+}
+
 
 class Juego {
     constructor(){
-        this.PUNTOS_VICTORIA = 7;        
+        this.PUNTOS_VICTORIA = 7;    
+
+        this.bd = new ControladorBD();    
     }
 
     async anadirJugador(jugadorNombre) {
-
-        const jugador = {};
-
-        if(jugadorNombre != null) jugador.nombre = jugadorNombre;
-
-        let j;
-        try {
-            j = new Jugador(jugador);
-            await j.save();
-        } catch (error) {
-            console.log( error )
-            return null;
-        }
-
-        return { id: j.id, nombre: j.nombre || "ANÓNIMO", fechaRegistro: j.createdAt };
+        return await this.bd.anadirJugador(jugadorNombre);        
     }
 
     async existeJugador({id, nombre}){
-        
-        const jugador = (id)
-                            ?await Jugador.findOne({ where: { id }})
-                            :await Jugador.findOne({ where: { nombre } });
-        return (jugador !== null);
+        return await this.bd.existeJugador({id, nombre});
     }    
 
     async getJugador(id) {
-        return await Jugador.findOne({ where: { id }});
+        return await this.bd.getJugador(id);
     }
     
     async getJugadorPorNombre(nombre) {
-        return await Jugador.findOne({ where: { nombre }});
+        return await this.bd.getJugadorPorNombre(nombre);
     }
 
     async getJugadas(idJugador) {
-        return await Jugada.findAll({ where: { idJugador }});
+        return await this.bd.getJugadas(idJugador);
     }
     
     async modificarNombreJugador({id = null, nombre = null, nuevoNombre}) {
-        let jugador;
-        if (id !== null) {
-            jugador = await this.getJugador(id);
-        } else {
-            jugador = await this.getJugadorPorNombre(nombre);
-        }
-        try {
-            jugador.nombre = nuevoNombre;
-            await jugador.save();  
-            return jugador;
-
-        } catch ( error ) {
-            console.log(error);
-            return
-        }
+        return await this.bd.modificarNombreJugador({id, nombre, nuevoNombre});
     }
     async eliminarTiradasJugador(idJugador) {
-        const jugador = await this.getJugador(idJugador);
-
-        jugador.juegos = 0;
-        jugador.juegosGanados = 0;
-        jugador.ratio = 0;
-
-        await Jugada.destroy({
-            where: {
-                idJugador
-            }
-        });
-
-        jugador.save();
-
-        return jugador;
+        return await this.bd.eliminarTiradasJugador(idJugador);
     }
 
     async rankingJugadores(){
-        return this.cambiarNullPorAnonimo(await Jugador.findAll({
-            attributes: ['id', 'nombre', 'juegos', 'juegosGanados', 'ratio'],
-            order: [['ratio', 'DESC'], ['juegos', 'DESC']]
-        }));
+        return this.cambiarNullPorAnonimo(await this.bd.rankingJugadores());
     }
 
     async rankingLoser(){
-        let resultado = await Jugador.findAll({
-            attributes: ['id', 'nombre', 'juegos', 'juegosGanados', 'ratio'],
-            order: [['ratio', 'ASC'], ['juegos', 'ASC']]
-        });
-        // Filtrar empates
-        const {ratio, juegos} = resultado[0];
-        console.log({ratio, juegos});
-        resultado = resultado.filter((j) => j.ratio === ratio);
-        resultado = resultado.filter((j) => j.juegos === juegos);
-
-        // Cambiar null X anónimo
-        for(let j of resultado) {
-            if (j && j.nombre === null) j.nombre = "ANONIMO";
-        }        
-
-        return resultado;
+        return await this.bd.rankingLoser();
     }
 
     async rankingWinner(){
-        let resultado = await Jugador.findAll({
-            attributes: ['id', 'nombre', 'juegos', 'juegosGanados', 'ratio'],
-            order: [['ratio', 'DESC'], ['juegos', 'DESC']]
-        });
-        // Filtrar empates
-        const {ratio, juegos} = resultado[0];
-        console.log({ratio, juegos});
-        resultado = resultado.filter((j) => j.ratio === ratio);
-        resultado = resultado.filter((j) => j.juegos === juegos);
-
-        // Cambiar null X anónimo
-        for(let j of resultado) {
-            if (j && j.nombre === null) j.nombre = "ANONIMO";
-        }        
-
-        return resultado;
+        return await this.bd.rankingWinner();
     }
 
     cambiarNullPorAnonimo(lista) {
@@ -136,14 +68,7 @@ class Juego {
 
     
     async obtenerRatioTotal(){
-        const jugadas = await Jugada.findAll({
-            attributes:['exito']
-        });
-        const totalJugadas = jugadas.length;
-        let totalAciertos = 0;
-        jugadas.map((valor) => (valor.exito)?totalAciertos+=1:totalAciertos+=0 );
-     
-        return totalAciertos / totalJugadas;
+        return await this.bd.obtenerRatioTotal();
     }
 
     async jugar(idJugador) {
@@ -153,22 +78,7 @@ class Juego {
         const resultado = dado1 + dado2;
         const exito = (resultado === this.PUNTOS_VICTORIA)?true:false;
 
- 
-        const jugador = await this.getJugador(idJugador);
-        const jugada = new Jugada({
-            idJugador,
-            dado1,
-            dado2,
-            resultado,
-            exito
-        });
-        jugador.juegos++;
-        if (exito) jugador.juegosGanados++;
-        jugador.ratio = jugador.juegosGanados / jugador.juegos;
-        await jugador.save();
-        await jugada.save();
-
-        return jugada;
+        return await this.bd.jugar(idJugador, dado1, dado2, resultado, exito);
     }
 }
 
