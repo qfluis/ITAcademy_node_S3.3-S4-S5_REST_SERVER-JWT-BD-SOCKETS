@@ -87,21 +87,39 @@ class Juego {
     }
 
     async rankingLoser(){
-        const resultado = await Jugador.findOne({
+        let resultado = await Jugador.findAll({
             attributes: ['id', 'nombre', 'juegos', 'juegosGanados', 'ratio'],
             order: [['ratio', 'ASC'], ['juegos', 'ASC']]
         });
-        if (resultado && resultado.nombre === null) resultado.nombre = "ANONIMO";
+        // Filtrar empates
+        const {ratio, juegos} = resultado[0];
+        console.log({ratio, juegos});
+        resultado = resultado.filter((j) => j.ratio === ratio);
+        resultado = resultado.filter((j) => j.juegos === juegos);
+
+        // Cambiar null X anónimo
+        for(let j of resultado) {
+            if (j && j.nombre === null) j.nombre = "ANONIMO";
+        }        
 
         return resultado;
     }
 
     async rankingWinner(){
-        const resultado = await Jugador.findOne({
+        let resultado = await Jugador.findAll({
             attributes: ['id', 'nombre', 'juegos', 'juegosGanados', 'ratio'],
             order: [['ratio', 'DESC'], ['juegos', 'DESC']]
         });
-        if (resultado && resultado.nombre === null) resultado.nombre = "ANONIMO";
+        // Filtrar empates
+        const {ratio, juegos} = resultado[0];
+        console.log({ratio, juegos});
+        resultado = resultado.filter((j) => j.ratio === ratio);
+        resultado = resultado.filter((j) => j.juegos === juegos);
+
+        // Cambiar null X anónimo
+        for(let j of resultado) {
+            if (j && j.nombre === null) j.nombre = "ANONIMO";
+        }        
 
         return resultado;
     }

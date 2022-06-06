@@ -191,9 +191,8 @@ const getRankingWinner = async (req, res) => {
 
     //TODO: optimizar ranking winner como con Loser
 
-    const jugadores = await juego.rankingJugadores();
-    const winner = jugadores[0];
-
+    const winner = await juego.rankingWinner();
+    
     res.status(200).json({
         msg:"Winner obtenido correctamente",
         winner

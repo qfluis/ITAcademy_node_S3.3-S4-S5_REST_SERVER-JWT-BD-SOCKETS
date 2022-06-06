@@ -213,5 +213,8 @@ TODO:BORRAR
 - [ ] No entiendo el login! Puedo hacer login y obtener el token, pero he podido hacer todo sin loguearme hasta llegar a la ruta de despues de obtener el token que no me la admite (y no encuentro la diferencia con las anteriores 😅)
 - [ ] La colección de postman habría que simplificarla: no hace falta probar todos los errores y las rutas inexistentes... Con crear una petición para cada endpoint que funcione es suficiente, el cliente ya se encargará de hacerlas fallar si hace falta. Como mucho se puede añadir alguna extra en "ejemplos" si hay alguna cosa muy concreta que es importante hacer notar
 # TODOs
-- Persistencia Mongo
+- Persistencia Mongo:
+    - Crear "controller BD"
+    - Según config en .env seleccionar Mongo o Sequelize...
+    
 - Colección postman (test) / Colección postman ejemplo API
