@@ -203,7 +203,7 @@ const getRankingWinner = async (req, res) => {
 
 // Endpoint no válido
 const playersNotFound = (req = request, res = response) => {
-    res.status(400).json({
+    res.status(404).json({
         msg: req.path + " - Endpoint no válido"
     });
 }    

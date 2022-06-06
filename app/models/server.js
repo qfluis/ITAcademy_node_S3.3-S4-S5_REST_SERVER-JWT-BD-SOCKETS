@@ -1,14 +1,14 @@
 const express = require('express');
 const db = require('../db/connection');
 const cors = require('cors');
-const path = require('path');
+//const path = require('path');
 
 class Server {
     constructor() {
         this.app = express();
         this.port = process.env.PORT;
         this.playersPath = '/api/players';
-        this.webPath = '/';
+        //this.webPath = '/';
         this.authPath ='/api/auth';
 
         // BD
@@ -39,14 +39,20 @@ class Server {
         this.app.use( express.json() );
 
         // Directorio público (no necesario para los puntos obligatorios de la práctica)
-        const url = path.resolve(__dirname,'../','public');
-        this.app.use(express.static(url));
+        //const url = path.resolve(__dirname,'../','public');
+        //this.app.use(express.static(url));
     }
 
     routes() {
         this.app.use( this.playersPath, require('../routes/players.routes'));
         this.app.use( this.authPath, require('../routes/auth.routes'));
-        this.app.use( this.webPath, require('../routes/web.routes'));
+        // Para cualquier endpoint no válido:
+        this.app.use( (req, res) => {
+            res.status(404).json({
+                msg: req.path + " - Endpoint no válido"
+            });
+        });
+        //this.app.use( this.webPath, require('../routes/web.routes'));
         
     }
 

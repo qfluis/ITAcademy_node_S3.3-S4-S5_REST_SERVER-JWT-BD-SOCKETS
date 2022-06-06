@@ -23,7 +23,7 @@ const login = async (req = request, res = response) => {
 }
 
 const authNotFound = (req, res) => {
-    res.status(400).json({
+    res.status(404).json({
         msg: req.path + " - Endpoint no válido"
     });
 }

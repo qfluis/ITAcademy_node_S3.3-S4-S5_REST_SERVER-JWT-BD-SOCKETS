@@ -206,4 +206,12 @@ Un ejemplo de la respuesta exitosa (status 200):
 }
 ```
 
-
+TODO:BORRAR 
+# CORRECCIONES
+- [x] Habría que quitar todas las vistas del server! Las rutas que no sean los endpoints especificados tienen que devolver 404 con un mensaje de not found, ninguna un HTML (ni un 400 bad request, que hay alguna!) ❗
+- [ ] En el ranquing loser y winner, si hay jugadores empatados deberias devolverlos todos
+- [ ] No entiendo el login! Puedo hacer login y obtener el token, pero he podido hacer todo sin loguearme hasta llegar a la ruta de despues de obtener el token que no me la admite (y no encuentro la diferencia con las anteriores 😅)
+- [ ] La colección de postman habría que simplificarla: no hace falta probar todos los errores y las rutas inexistentes... Con crear una petición para cada endpoint que funcione es suficiente, el cliente ya se encargará de hacerlas fallar si hace falta. Como mucho se puede añadir alguna extra en "ejemplos" si hay alguna cosa muy concreta que es importante hacer notar
+# TODOs
+- Persistencia Mongo
+- Colección postman (test) / Colección postman ejemplo API

@@ -1,3 +1,4 @@
+/* NO UTILIZADO EN ESTA PRÁCTICA 
 const { response, request } = require('express');
 const path = require('path');
 
@@ -6,3 +7,4 @@ const get404 = (req = request, res = response) => {
 }
 
 module.exports = { get404 }
+*/
