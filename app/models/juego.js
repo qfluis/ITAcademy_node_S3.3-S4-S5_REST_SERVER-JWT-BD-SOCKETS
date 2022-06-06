@@ -1,12 +1,13 @@
 //const Jugador  = require('../db/mysql-models/Jugador');
 //const Jugada = require('../db/mysql-models/Jugada');
 // TODO seleccionar entre mysql/mongo
+require('dotenv').config();
 const {BD} = process.env;
 let controladorBD;
 if (BD==='mysql') {
     ControladorBD = require('../db/controlador-BD-mysql');
 } else {
-    //ControladorBD = // MONGOOOOO
+    ControladorBD = require('../db/controlador-BD-mongo');
 }
 
 

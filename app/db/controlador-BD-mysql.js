@@ -4,10 +4,6 @@ const Jugada = require('./mysql-models/Jugada');
 
 class ControladorBdMysql extends ControladorBd {
     
-    constructor(){
-        super();
-    }
-    
     async anadirJugador(jugadorNombre) {
         const jugador = {};
 
