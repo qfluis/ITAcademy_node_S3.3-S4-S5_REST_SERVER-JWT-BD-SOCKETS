@@ -43,7 +43,7 @@ class Server {
             }
         } else {
             await db();
-            console.log('BD Mongo inicializada');
+            //console.log('BD Mongo inicializada');
         }       
     }
 
