@@ -44,10 +44,10 @@ router.delete('/:id/games', /*[      // Válido para mysql
 router.get('/', getPlayers);
 
 // GET /players/{id}/games: retorna el llistat de jugades per un jugador.
-router.get('/:id/games', [
+router.get('/:id/games', /*[        // Válido para mysql
     check('id', 'debes facilitar un id de jugador válido').isNumeric().toInt(),
     validarCampos
-] , getPlayersGames);
+] ,*/ getPlayersGames);
 
 // GET /players/ranking: retorna el percentatge mig d’èxits del conjunt de tots els jugadors
 router.get('/ranking', getRanking);

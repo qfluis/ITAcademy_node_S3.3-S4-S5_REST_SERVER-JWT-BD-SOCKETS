@@ -19,16 +19,13 @@ class ControladorBdMongo extends ControladorBd {
             console.log( error );
             return null;
         }
-        console.log(j);
         return {id:j._id, nombre: j.nombre || "ANÓNIMO", fechaRegistro:j.createdAt }
     }
 
     async existeJugador({id, nombre}){
-       
         const jugador = (id)
                             ?await this.getJugador(id)
                             :await this.getJugadorPorNombre(nombre);
-        console.log(jugador);
         return (jugador !== null);
     }
 
@@ -50,7 +47,7 @@ class ControladorBdMongo extends ControladorBd {
     }
 
     async getJugadas(idJugador) {
-        return await Jugada.findAll({ idJugador });
+        return await Jugada.find({ idJugador });
     }
 
     async modificarNombreJugador({id=null, nombre=null, nuevoNombre}){

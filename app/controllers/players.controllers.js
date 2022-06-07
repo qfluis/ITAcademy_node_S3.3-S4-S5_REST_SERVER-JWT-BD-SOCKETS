@@ -145,7 +145,7 @@ const getPlayersGames = async (req = request, res) => {
         return;
     }
     
-    id = parseInt(id);
+    // id = parseInt(id); // Peta con Mongo...
 
     if(! await juego.existeJugador({id})) {
         res.status(400).json({
