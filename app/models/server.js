@@ -4,10 +4,8 @@ require('dotenv').config();
 const {BD} = process.env;
 let db;
 if (BD === 'mysql') {
-    console.log(BD);
     db = require('../db/connection-mysql');
 } else { // Mongo
-    console.log(BD);
     db = require('../db/connection-mongo');
 }
 

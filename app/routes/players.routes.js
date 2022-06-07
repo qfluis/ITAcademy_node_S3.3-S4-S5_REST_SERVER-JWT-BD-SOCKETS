@@ -29,16 +29,16 @@ router.put('/', [
 ], putPlayers);
 
 // POST /players/{id}/games: un jugador específic realitza una tirada
-router.post('/:id/games',[
+router.post('/:id/games',/*[      //Check válido para persistencia MYSQL pero no para mongo al ser el id alfanumérico
     check('id', 'debes facilitar un id de jugador válido').isNumeric().toInt(),
     validarCampos
-], postPlayersGames);
+], */ postPlayersGames);
 
 // DELETE /players/{id}/games: elimina les tirades del jugador
-router.delete('/:id/games', [
+router.delete('/:id/games', /*[      // Válido para mysql
     check('id', 'debes facilitar un id de jugador válido').isNumeric().toInt(),
     validarCampos
-], deletePlayersGames);
+],*/ deletePlayersGames);
 
 // GET /players: retorna el llistat de tots els jugadors del sistema amb el seu percentatge mig d’èxits
 router.get('/', getPlayers);

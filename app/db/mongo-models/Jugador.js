@@ -4,7 +4,7 @@ const jugadorSchema = Schema({
     
     nombre: {
         type: String,
-        unique: [true, 'nombre no disponible']        
+        default: null    
     },
     juegos: {
         type: Number,
