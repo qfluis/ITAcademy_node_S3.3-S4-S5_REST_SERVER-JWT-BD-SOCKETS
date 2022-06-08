@@ -11,6 +11,7 @@ if (BD === 'mysql') {
 
 
 const cors = require('cors');
+const { bodyJsonValido } = require('../middlewares/body_json_valido');
 //const path = require('path');
 
 
@@ -53,6 +54,8 @@ class Server {
 
         // Lectura y parseo del body
         this.app.use( express.json() );
+        // Devuelve error si al parsear json da error
+        this.app.use(bodyJsonValido);
 
         // Directorio público (no necesario para los puntos obligatorios de la práctica)
         //const url = path.resolve(__dirname,'../','public');

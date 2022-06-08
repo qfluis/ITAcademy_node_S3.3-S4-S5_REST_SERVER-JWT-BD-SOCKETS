@@ -31,6 +31,7 @@ class ControladorBdMongo extends ControladorBd {
 
     async getJugador(id){
         //Comprueba si es un id válido MongoDB (string de 24 caracteres)
+        id = id.toString(); // por si envia un número para que no pete
         if (id.length !== 24) return null;
         try {
             let resp = await Jugador.findById(id);
