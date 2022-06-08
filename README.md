@@ -8,30 +8,43 @@ npm install
 ### Configurar variables de entorno:
 configurar fichero .env en la carpeta raiz del proyecto. Puedes encontrar en .env-dev las variables de entorno utilizadas en desarrollo.
 ```
+// Variables Aplicación
 PORT=3333
-MYSQL_DB_NAME=dado_juego
+API_LOGIN_EMAIL=qfluis@gmail.com
+API_LOGIN_PASS=123456
+JWT_SECRET_PRIVATE_KEY=noselodigasanadie
+
+// Selección de persistencia
+BD=mysql
+//BD=mongo
+
+// Variables MYSQL
+MYSQL_DB_NAME=dado_juego_lq
 MYSQL_USER=root
 MYSQL_PASS=olakease1234!
 MYSQL_HOST=localhost
 MYSQL_PORT=3306
-API_LOGIN_EMAIL=qfluis@gmail.com
-API_LOGIN_PASS=123456
-JWT_SECRET_PRIVATE_KEY=noselodigasanadie
+// Variables MONGO
+MONGO_DB_CONNECTION=mongodb://localhost:27017/dadoJuegoLq
+//MONGO_DB_CONNECTION=mongodb+srv://usuario:contraseña@cluster0.dmtno.mongodb.net/dadoJuegoLq?retryWrites=true&w=majority
 ```
 ### Base de datos
+Existe la opción de utilizar MySQL y MongoDB.
+#### MySQL
+En `.env` configurar la variable `BD=mysql`.
 Es necesario tener una base de datos creada en mysql, con el nombre indicado en la variable de entorno *MYSQL_DB_NAME*. Las tablas se crean automáticamente.
 Puedes encontrar el script SQL para crear la BD en el fichero `./mysql/create_bd.sql`, el código que contiene es el siguiente:
 ```
 CREATE SCHEMA `dado_juego` DEFAULT CHARACTER SET utf8mb4 ;
 ```
+#### MongoDB
+En `.env` configurar la variable `BD=mongo`.
+Se han dejado a modo de ejemplo dos cadenas de conexión a BD mongo, la primera a entorno en local sin contraseña y la segunda a un servicio en la nuve con usuario y contraseña.
 
 ### Iniciar el servidor:
 ```
 npm start
 ```
-## Servidor web
-Este servidor puede mostrar los archivos situados en la carpeta public. El endpoint es "/"
-
 ## Endpoints API
 A tener en cuenta:
 - Todas las peticiones a endpoints (excepto POST api/auth/login), deberán incluir en headers la key **jwt-token**, con el valor del token de autenticación. 
@@ -51,6 +64,22 @@ Ejemplo de respuesta:
 {
     "msg": "login correcto 👍",
     "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InFmbHVpc0BnbWFpbC5jb20iLCJpYXQiOjE2NTIxMzE3NDMsImV4cCI6MTY4MzY2Nzc0M30.Vcx_QXRf0ZFT8KOtilIJJiP8sbzZFoREUNxXUXOYtIw"
+}
+```
+### POST /api/auth/renew
+Esta petición nos permite renovar el token de autenticación.
+En esta petición sólo se tiene que enviar el email en el body y el token en el header con la key `jwt-token`.
+Ejemplo de body de la petición:
+```
+{
+    "email":"qfluis@gmail.com"
+}
+```
+Ejemplo de respuesta:
+```
+{
+    "msg": "Token renovado 👍",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InFmbHVpc0BnbWFpbC5jb20iLCJpYXQiOjE2NTQ2OTk1MTUsImV4cCI6MTY4NjIzNTUxNX0.FKYKTPtscJhUONd_0vpi20f4QTXj4c5Gy9kv6xpFpf4"
 }
 ```
 ### POST /api/players
@@ -176,7 +205,8 @@ Un ejemplo de respuesta exitosa (status 200):
 }
 ```
 ### GET /api/players/ranking/loser
-Esta petición nos devuelve el peor jugador.
+Esta petición nos devuelve el peor jugador, en base al menor ratio y número de juegos.
+En caso de haber empate devuelve array con los jugadores empatados.
 Un ejemplo de la respuesta exitosa (status 200):
 ```
 {
@@ -191,7 +221,8 @@ Un ejemplo de la respuesta exitosa (status 200):
 }
 ```
 ### GET /api/players/ranking/winner
-Esta petición nos devuelve el mejor jugador.
+Esta petición nos devuelve el mejor jugador, en base al mayor ratio y número de juegos.
+En caso de haber empate devuelve array con los jugadores empatados.
 Un ejemplo de la respuesta exitosa (status 200):
 ```
 {
@@ -205,16 +236,11 @@ Un ejemplo de la respuesta exitosa (status 200):
     }
 }
 ```
+## Postman
+Se incluyen 2 colecciones de postman en la carpeta **/postman**
+En ambas colecciones se ha añadido una variable **jwt-token**, con un valor de token válido (caducan al año para facilitar el desarrollo).
+En todas las peticiones se utiliza esta variable para enviar el token en la cabecera.
+- `ENDPOINTS.postman_collection.json`: Con un ejemplo de cada endpoints de la API.
+- `TEST.postman_collection.json`: Con una bateria de pruebas.
 
-TODO:BORRAR 
-# CORRECCIONES
-- [x] Habría que quitar todas las vistas del server! Las rutas que no sean los endpoints especificados tienen que devolver 404 con un mensaje de not found, ninguna un HTML (ni un 400 bad request, que hay alguna!) ❗
-- [x] En el ranquing loser y winner, si hay jugadores empatados deberias devolverlos todos
-- [x] No entiendo el login! Puedo hacer login y obtener el token, pero he podido hacer todo sin loguearme hasta llegar a la ruta de despues de obtener el token que no me la admite (y no encuentro la diferencia con las anteriores 😅)
-- [ ] La colección de postman habría que simplificarla: no hace falta probar todos los errores y las rutas inexistentes... Con crear una petición para cada endpoint que funcione es suficiente, el cliente ya se encargará de hacerlas fallar si hace falta. Como mucho se puede añadir alguna extra en "ejemplos" si hay alguna cosa muy concreta que es importante hacer notar
-# TODOs
-- Persistencia Mongo:
-    - Crear "controller BD"
-    - Según config en .env seleccionar Mongo o Sequelize...
-    
-- Colección postman (test) / Colección postman ejemplo API
+

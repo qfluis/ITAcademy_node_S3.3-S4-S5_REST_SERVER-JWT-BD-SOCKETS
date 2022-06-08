@@ -2,10 +2,6 @@ const { response, request } = require('express');
 const path = require('path');
 const juego = require('../models/juego');
 
-// TODO: revisar codigos respuesta 🙂
-// TODO: Hacer middlewares para validación de campos con express-validator...
-
-
 // POST /players: crea un jugador
 const postPlayers = async (req = request, res = response) => {
     let { nombre } = req.body;

@@ -1,8 +1,9 @@
 {
 	"info": {
 		"_postman_id": "6e610b7d-7ca0-4ed3-b75e-970a69d0bbec",
-		"name": "NODEJS_API_REST_2",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+		"name": "NODEJS_API_REST_2_TEST",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19433871"
 	},
 	"item": [
 		{
@@ -772,7 +773,7 @@
 			"response": []
 		},
 		{
-			"name": "/api/auth/login - Logea usuario",
+			"name": "/api/auth/login - Loguea usuario",
 			"request": {
 				"method": "POST",
 				"header": [],
@@ -795,6 +796,41 @@
 						"api",
 						"auth",
 						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/auth/renew - Renueva token",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "jwt-token",
+						"value": "{{jwt-token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\":\"qfluis@gmail.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3333/api/auth/renew",
+					"host": [
+						"localhost"
+					],
+					"port": "3333",
+					"path": [
+						"api",
+						"auth",
+						"renew"
 					]
 				}
 			},
