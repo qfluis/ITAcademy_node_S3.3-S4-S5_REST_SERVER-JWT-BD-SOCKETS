@@ -1,0 +1,1033 @@
+{
+	"info": {
+		"_postman_id": "6e610b7d-7ca0-4ed3-b75e-970a69d0bbec",
+		"name": "NODEJS_API_REST_2_TEST",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19433871"
+	},
+	"item": [
+		{
+			"name": "/api/players - Crea un jugador Luis",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "jwt-token",
+						"value": "{{jwt-token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\":\"Luis\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3333/api/players/",
+					"host": [
+						"localhost"
+					],
+					"port": "3333",
+					"path": [
+						"api",
+						"players",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/players - Crea jugador Cris",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "jwt-token",
+						"value": "{{jwt-token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\":\"Cris\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3333/api/players/",
+					"host": [
+						"localhost"
+					],
+					"port": "3333",
+					"path": [
+						"api",
+						"players",
+						""
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/players - Crea jugador Romeo",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "jwt-token",
+						"value": "{{jwt-token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\":\"Romeo\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3333/api/players/",
+					"host": [
+						"localhost"
+					],
+					"port": "3333",
+					"path": [
+						"api",
+						"players",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/players - Crea jugador Kika",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "jwt-token",
+						"value": "{{jwt-token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\":\"Kika\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3333/api/players/",
+					"host": [
+						"localhost"
+					],
+					"port": "3333",
+					"path": [
+						"api",
+						"players",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/players - Crea un jugador \"\"",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "jwt-token",
+						"value": "{{jwt-token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\":\"\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3333/api/players/",
+					"host": [
+						"localhost"
+					],
+					"port": "3333",
+					"path": [
+						"api",
+						"players",
+						""
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/players - Crea un jugador Anónimo",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "jwt-token",
+						"value": "{{jwt-token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3333/api/players/",
+					"host": [
+						"localhost"
+					],
+					"port": "3333",
+					"path": [
+						"api",
+						"players",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/players/** - Endpoint no válido",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "jwt-token",
+						"value": "{{jwt-token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\":\"Luis\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3333/api/players/holiwi/kiwi",
+					"host": [
+						"localhost"
+					],
+					"port": "3333",
+					"path": [
+						"api",
+						"players",
+						"holiwi",
+						"kiwi"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/players - Modifica un jugador, pasando id",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "jwt-token",
+						"value": "{{jwt-token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\":4,\r\n    \"nuevoNombre\":\"Wow\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3333/api/players/",
+					"host": [
+						"localhost"
+					],
+					"port": "3333",
+					"path": [
+						"api",
+						"players",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/players - Modifica un jugador, pasando nombre",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "jwt-token",
+						"value": "{{jwt-token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\":\"Luis\",\r\n    \"nuevoNombre\":\"Luisete\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3333/api/players/",
+					"host": [
+						"localhost"
+					],
+					"port": "3333",
+					"path": [
+						"api",
+						"players",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/players - Modifica un jugador, sin pasar nuevo nombre",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "jwt-token",
+						"value": "{{jwt-token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\":\"Luisete\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3333/api/players/",
+					"host": [
+						"localhost"
+					],
+					"port": "3333",
+					"path": [
+						"api",
+						"players",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/players - Modifica un jugador, sin pasar info",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "jwt-token",
+						"value": "{{jwt-token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3333/api/players/",
+					"host": [
+						"localhost"
+					],
+					"port": "3333",
+					"path": [
+						"api",
+						"players",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/players - Modifica un jugador, pasando nuevo nombre existente",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "jwt-token",
+						"value": "{{jwt-token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nuevoNombre\":\"Kika\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3333/api/players/",
+					"host": [
+						"localhost"
+					],
+					"port": "3333",
+					"path": [
+						"api",
+						"players",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/players/** - Endpoint no válido",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "jwt-token",
+						"value": "{{jwt-token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\":4,\r\n    \"nuevoNombre\":\"Wow\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3333/api/players/holiwi/kiwi",
+					"host": [
+						"localhost"
+					],
+					"port": "3333",
+					"path": [
+						"api",
+						"players",
+						"holiwi",
+						"kiwi"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/players/:id/games - Jugador realiza tirada",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "jwt-token",
+						"value": "{{jwt-token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:3333/api/players/1/games",
+					"host": [
+						"localhost"
+					],
+					"port": "3333",
+					"path": [
+						"api",
+						"players",
+						"1",
+						"games"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/players/:id/games - Id no existe",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "jwt-token",
+						"value": "{{jwt-token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:3333/api/players/250/games",
+					"host": [
+						"localhost"
+					],
+					"port": "3333",
+					"path": [
+						"api",
+						"players",
+						"250",
+						"games"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/players/:id/games - Id formato no válido",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "jwt-token",
+						"value": "{{jwt-token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:3333/api/players/olakase/games",
+					"host": [
+						"localhost"
+					],
+					"port": "3333",
+					"path": [
+						"api",
+						"players",
+						"olakase",
+						"games"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/players/:id/games - Elimina jugadas del jugador",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "jwt-token",
+						"value": "{{jwt-token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:3333/api/players/3/games",
+					"host": [
+						"localhost"
+					],
+					"port": "3333",
+					"path": [
+						"api",
+						"players",
+						"3",
+						"games"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/players/ - Listado jugadores",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "jwt-token",
+						"value": "{{jwt-token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:3333/api/players",
+					"host": [
+						"localhost"
+					],
+					"port": "3333",
+					"path": [
+						"api",
+						"players"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/players/:id/games - Obtenemos listado jugadas",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "jwt-token",
+						"value": "{{jwt-token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:3333/api/players/1/games",
+					"host": [
+						"localhost"
+					],
+					"port": "3333",
+					"path": [
+						"api",
+						"players",
+						"1",
+						"games"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/players/ranking - Promedio acierto de los jugadores",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "jwt-token",
+						"value": "{{jwt-token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:3333/api/players/ranking",
+					"host": [
+						"localhost"
+					],
+					"port": "3333",
+					"path": [
+						"api",
+						"players",
+						"ranking"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/players/ranking/loser - Peor jugador",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "jwt-token",
+						"value": "{{jwt-token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:3333/api/players/ranking/loser",
+					"host": [
+						"localhost"
+					],
+					"port": "3333",
+					"path": [
+						"api",
+						"players",
+						"ranking",
+						"loser"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/players/ranking/winner",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "jwt-token",
+						"value": "{{jwt-token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:3333/api/players/ranking/winner",
+					"host": [
+						"localhost"
+					],
+					"port": "3333",
+					"path": [
+						"api",
+						"players",
+						"ranking",
+						"winner"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/players/:id/games - Endpoint no válido",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "jwt-token",
+						"value": "{{jwt-token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:3333/api/players/holiwi/kiwi",
+					"host": [
+						"localhost"
+					],
+					"port": "3333",
+					"path": [
+						"api",
+						"players",
+						"holiwi",
+						"kiwi"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/auth/login - Loguea usuario",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\":\"qfluis@gmail.com\",\r\n    \"pass\":\"123456\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3333/api/auth/login",
+					"host": [
+						"localhost"
+					],
+					"port": "3333",
+					"path": [
+						"api",
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/auth/renew - Renueva token",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "jwt-token",
+						"value": "{{jwt-token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\":\"qfluis@gmail.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3333/api/auth/renew",
+					"host": [
+						"localhost"
+					],
+					"port": "3333",
+					"path": [
+						"api",
+						"auth",
+						"renew"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/auth/login - Usuario no permitido",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\":\"hola@gmail.com\",\r\n    \"pass\":\"123456\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3333/api/auth/login",
+					"host": [
+						"localhost"
+					],
+					"port": "3333",
+					"path": [
+						"api",
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/players - Petición sin token",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "jwt-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InFmbHVpc0BnbWFpbC5jb20iLCJpYXQiOjE2NTE2MTM1NDgsImV4cCI6MTY4MzE0OTU0OH0.EP2q0jwJmvL_leof-3k1-o-w72CdPUm9vtHqAY7yU9k",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\":\"Luis\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3333/api/players/",
+					"host": [
+						"localhost"
+					],
+					"port": "3333",
+					"path": [
+						"api",
+						"players",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/players - Petición con token no válido",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "jwt-token",
+						"value": "AyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InFmbHVpc0BnbWFpbC5jb20iLCJpYXQiOjE2NTE2MTM1NDgsImV4cCI6MTY4MzE0OTU0OH0.EP2q0jwJmvL_leof-3k1-o-w72CdPUm9vtHqAY7yU9k",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\":\"Luis\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3333/api/players/",
+					"host": [
+						"localhost"
+					],
+					"port": "3333",
+					"path": [
+						"api",
+						"players",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/auth - endpoint no válido",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\":\"Luis\",\r\n    \"pass\":\"12345\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3333/api/auth/todomal",
+					"host": [
+						"localhost"
+					],
+					"port": "3333",
+					"path": [
+						"api",
+						"auth",
+						"todomal"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Web server - 404",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "jwt-token",
+						"value": "{{jwt-token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\":\"Luis\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3333/holiwi/kiwi",
+					"host": [
+						"localhost"
+					],
+					"port": "3333",
+					"path": [
+						"holiwi",
+						"kiwi"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "jwt-token",
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InFmbHVpc0BnbWFpbC5jb20iLCJpYXQiOjE2NTIxMjk2OTIsImV4cCI6MTY4MzY2NTY5Mn0.NlvfBrX1SFPIXOtif9LhoqWtZwMZlFA4CXr5va-kjoI",
+			"type": "string"
+		}
+	]
+}

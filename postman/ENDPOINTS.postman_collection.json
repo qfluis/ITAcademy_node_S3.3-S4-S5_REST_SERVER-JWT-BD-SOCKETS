@@ -1,0 +1,364 @@
+{
+	"info": {
+		"_postman_id": "e723c0b5-d9b0-48f7-a6ff-87462f40e862",
+		"name": "NODEJS_API_REST_2_ENDPOINTS",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19433871"
+	},
+	"item": [
+		{
+			"name": "/api/players - Crea un jugador Luis",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "jwt-token",
+						"value": "{{jwt-token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\":\"Luis\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3333/api/players/",
+					"host": [
+						"localhost"
+					],
+					"port": "3333",
+					"path": [
+						"api",
+						"players",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/players - Modifica un jugador, pasando id",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "jwt-token",
+						"value": "{{jwt-token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\":1,\r\n    \"nuevoNombre\":\"Wow\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3333/api/players/",
+					"host": [
+						"localhost"
+					],
+					"port": "3333",
+					"path": [
+						"api",
+						"players",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/players/:id/games - Jugador realiza tirada",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "jwt-token",
+						"value": "{{jwt-token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:3333/api/players/1/games",
+					"host": [
+						"localhost"
+					],
+					"port": "3333",
+					"path": [
+						"api",
+						"players",
+						"1",
+						"games"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/players/:id/games - Elimina jugadas del jugador",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "jwt-token",
+						"value": "{{jwt-token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:3333/api/players/3/games",
+					"host": [
+						"localhost"
+					],
+					"port": "3333",
+					"path": [
+						"api",
+						"players",
+						"3",
+						"games"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/players/ - Listado jugadores",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "jwt-token",
+						"value": "{{jwt-token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:3333/api/players",
+					"host": [
+						"localhost"
+					],
+					"port": "3333",
+					"path": [
+						"api",
+						"players"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/players/:id/games - Obtenemos listado jugadas",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "jwt-token",
+						"value": "{{jwt-token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:3333/api/players/1/games",
+					"host": [
+						"localhost"
+					],
+					"port": "3333",
+					"path": [
+						"api",
+						"players",
+						"1",
+						"games"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/players/ranking - Promedio acierto de los jugadores",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "jwt-token",
+						"value": "{{jwt-token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:3333/api/players/ranking",
+					"host": [
+						"localhost"
+					],
+					"port": "3333",
+					"path": [
+						"api",
+						"players",
+						"ranking"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/players/ranking/loser - Peor jugador",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "jwt-token",
+						"value": "{{jwt-token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:3333/api/players/ranking/loser",
+					"host": [
+						"localhost"
+					],
+					"port": "3333",
+					"path": [
+						"api",
+						"players",
+						"ranking",
+						"loser"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/players/ranking/winner",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "jwt-token",
+						"value": "{{jwt-token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:3333/api/players/ranking/winner",
+					"host": [
+						"localhost"
+					],
+					"port": "3333",
+					"path": [
+						"api",
+						"players",
+						"ranking",
+						"winner"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/auth/login - Loguea usuario",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\":\"qfluis@gmail.com\",\r\n    \"pass\":\"123456\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3333/api/auth/login",
+					"host": [
+						"localhost"
+					],
+					"port": "3333",
+					"path": [
+						"api",
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/auth/renew - Renueva token",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "jwt-token",
+						"value": "{{jwt-token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\":\"qfluis@gmail.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3333/api/auth/renew",
+					"host": [
+						"localhost"
+					],
+					"port": "3333",
+					"path": [
+						"api",
+						"auth",
+						"renew"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "jwt-token",
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InFmbHVpc0BnbWFpbC5jb20iLCJpYXQiOjE2NTIxMjk2OTIsImV4cCI6MTY4MzY2NTY5Mn0.NlvfBrX1SFPIXOtif9LhoqWtZwMZlFA4CXr5va-kjoI",
+			"type": "string"
+		}
+	]
+}

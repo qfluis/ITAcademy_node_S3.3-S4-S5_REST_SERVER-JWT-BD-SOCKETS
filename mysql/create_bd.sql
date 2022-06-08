@@ -1,0 +1,1 @@
+CREATE SCHEMA `dado_juego` DEFAULT CHARACTER SET utf8mb4 ;
