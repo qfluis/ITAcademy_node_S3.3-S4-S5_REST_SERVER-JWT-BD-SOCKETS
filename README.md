@@ -4,7 +4,7 @@ Repositorio que contiene FRONT-END y BACK-END del proyecto final del **Bootcamp 
 **Smapchat es un chat en el que tu puedes crear las salas utilizando un mapa.**
 
 **¡Ojo no marques nunca tu dirección exacta!** <small>(disclaimer necesario para no tener problemas legales, según mi abogado)</small>
-<img src="./ASSETS_ORIGINALES/smapchat-screenshot.png" style="width:100%; max-width:350px" />
+<img src="./ASSETS_ORIGINALES/smapchat-screenshot.png" style="max-width:350px" />
 
 ## Creditos
 - La programación del proyecto ha sido por parte de **Luis Quevedo**, propietario de este repo. ([Linkedin](https://www.linkedin.com/in/luisquevedoferreiros/))
