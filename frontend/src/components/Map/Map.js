@@ -87,7 +87,7 @@ export const Map = ({setSala}) => {
                     <button className='btn btn-success mt-2 mb-2' onClick={crearSala}>Crear Sala</button>
                 </div>  
                 <div className="col-md-8" >
-                    <MapContainer className="map-container" center={[51.505, -0.09]} zoom={13} scrollWheelZoom={false}>
+                    <MapContainer className="map-container" center={[41.40257722244276, 2.194627921730429]} zoom={17} scrollWheelZoom={false}>
                         <MyMapa setCoordenadas={setCoordenadas} />
                         <TileLayer
                             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
