@@ -21,7 +21,6 @@ class Sockets {
     socketSecure() {  
         
         this.io.use((socket, next) => {
-            console.log(socket.handshake.query);
             if (socket.handshake.query && socket.handshake.query.token){
                 jwt.verify(socket.handshake.query.token, process.env.JWT_SECRET_PRIVATE_KEY , function(err, decoded) {
                 if(err) return next(new Error('Authentication error'));
