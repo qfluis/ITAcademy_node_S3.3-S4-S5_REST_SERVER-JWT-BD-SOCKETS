@@ -37,12 +37,7 @@ class Sockets {
         // On connection
         // TODO: revisar https://socket.io/docs/v4/server-socket-instance/
         this.io.on('connection', ( socket ) => {
-            // TODO: obtener token, validarlo, obtener nickname y guardarlo en socket...
             //socket.nickname = nickname;
-            //console.log("Cliente conectado", socket.id);
-            //socket.join(this.salas[0]); // Por defecto en primera sala (general)
-
-            //socket.emit('lista-salas', this.salas.getSalas());
 
             socket.on('disconnect', () => {
                 //console.log("Cliente desconectado", socket.id);
@@ -51,7 +46,6 @@ class Sockets {
            
             socket.on("entrar-sala", (/*salaAnterior, */sala) => {
                 // https://socket.io/docs/v3/rooms/
-                //console.log('socket rooms:',socket.rooms);
                 const salaAnterior = Array.from(socket.rooms)[2];
 
                 if (salaAnterior) socket.leave(salaAnterior);
