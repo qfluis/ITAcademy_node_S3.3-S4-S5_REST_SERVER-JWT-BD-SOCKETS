@@ -3,14 +3,15 @@ import io from 'socket.io-client';
 //import { AuthContext } from '../auth/authContext';
 
 
-export const useSocket = ( serverPath ) => {
+export const useSocket = ( serverPath, token ) => {
   // useMemo evita que cada vez que se recarga el socket vuelva a conectarse
   
   //const {user} = useContext(AuthContext);
 
   const socket = useMemo ( () => io.connect( serverPath,{
-    transports: ['websocket']
-  }), [ serverPath ]);  
+    transports: ['websocket'],
+    query: {token}
+  }), [ serverPath, token ]);  
 
   //const socket = useMemo( () => io.connect( serverPath ), [ serverPath ] );
   
