@@ -17,11 +17,12 @@ class Sockets {
 
     socketEvents() {
         // On connection
+        // TODO: revisar https://socket.io/docs/v4/server-socket-instance/
         this.io.on('connection', ( socket ) => {
             // TODO: obtener token, validarlo, obtener nickname y guardarlo en socket...
             //socket.nickname = nickname;
             //console.log("Cliente conectado", socket.id);
-            socket.join(this.salas[0]); // Por defecto en primera sala (general)
+            //socket.join(this.salas[0]); // Por defecto en primera sala (general)
 
             //socket.emit('lista-salas', this.salas.getSalas());
 
