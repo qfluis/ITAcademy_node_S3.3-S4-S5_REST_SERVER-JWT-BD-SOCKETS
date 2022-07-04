@@ -1,50 +1,41 @@
+# SMAPCHAT
+Repositorio que contiene FRONT-END y BACK-END del proyecto final del **Bootcamp de Node.js** de la **IT-Academy**.
 
-# Node Initial Project
+**Smapchat es un chat en el que tu puedes crear las salas utilizando un mapa.**
 
-### Project Structure
+**¡Ojo no marques nunca tu dirección exacta!** <small>(disclaimer necesario para no tener problemas legales, según mi abogado)</small>
 
-Main structure of node.js project. Folders / files:
+<img src="./ASSETS_ORIGINALES/smapchat-screenshot.png" width="350px" />
 
-- <b>\_\_tests__</b>. Tests folder. See [Jest Docs](https://jestjs.io/es-ES/docs/configuration) and [Chai Docs](https://www.chaijs.com/)
-- <b>app</b>:
-    - <b>config</b>
-    - <b>controllers</b>
-    - <b>crons</b>
-    - <b>middleware</b>
-    - <b>models</b>
-    - <b>routes</b>
-    - <b>tmp</b>
-    - <b>app.js</b>. Entry point.
-- <b>.env</b>. Environment descriptor. See [dotenv doc](https://www.npmjs.com/package/dotenv).
-- <b>.eslintrc</b>. Linter JS, static code analyzer. See [EsLint Docs](https://eslint.org/docs/user-guide/configuring/configuration-files).
-- <b>.prettierignore</b>. Code formatter. See [Prettier Config](https://prettier.io/docs/en/configuration.html) and [Prettier Ignore](https://prettier.io/docs/en/ignore.html).
-- <b>.ecosystem.config.js</b>. Process Manage at runtime. See [PM2 Docs](https://pm2.keymetrics.io/).
-- <b>package.json</b>.
+## Creditos
+- La programación del proyecto ha sido por parte de **Luis Quevedo**, propietario de este repo. ([Linkedin](https://www.linkedin.com/in/luisquevedoferreiros/))
 
-### Import project for use with WebStorm
-
-Follow the steps below:
-* Clone the project from the Github Platform. Execute:
-  ```
-  git clone [url project]
-  ```
-* Open the project downloaded.
-![Open Project](img/webstorm_open.png)
+- El maravilloso logo y los pines son idea y obra de la artista **Marie Gonzalez** ([web](http://misscapricho.com/), [Linkedin](https://www.linkedin.com/in/marieklaragonzalez/), [Instagram](https://www.instagram.com/marieklaragonzalez/)), le pago con visibilidad 🤣
 
 
-### Import project for use with Visual Studio Code
 
-Follow the steps below:
-* Clone the project from the Github Platform. Execute:
-  ```
-  git clone [url project]
-  ```
-* Open the project downloaded.
-  ![Open Project](img/VSC_open.png)
+Tecnologías utilizadas:
+- Backend: Node.js, Express, Socket.io, MongoDB, JWT...
+- Frontend: React, Leaflet/React-leaflet, Socket.io-client...
 
+## Estructura
+En este repo encontrarás 3 carpetas:
+- backend: Código fuente del backend.
+- frontend: Código fuente del frontend.
+- ASSETS_ORIGINALES: Aquí encontrarás las imagenes originales utilizadas en el proyecto. Me gusta guardarlo todo...
 
-### Utilities
+## Déjate de rollos que quiero ponerlo en marcha
+### Instala dependencias
+para que funcione el proyecto debes tener instalados node.js y MongoDB.
+Para instalar las dependencias deberás ejecutar en las carpetas frontend y backend respectivamente.
+```
+npm install
+```
 
-* [Node Developers Guide](https://nodejs.dev/learn)
-* **.gitignore file** configuration. See [Official Docs](https://docs.github.com/en/get-started/getting-started-with-git/ignoring-files).
-* **Git branches**. See [Official Docs](https://git-scm.com/book/en/v2/Git-Branching-Branches-in-a-Nutshell)
+### Ejecuta back y front
+Para poner en marcha el back y el front también deberás ejecutar el siguiente comando en las carpetas backend y frontend respectivamente:
+```
+npm start
+```
+
+# ¡Muchas gracias por usar Smapchat! Algún día podrás decir que fuiste de los primeros que lo utilizó.
